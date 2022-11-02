@@ -40,6 +40,17 @@ app.get("/user", (req, res) => {
     });
   });
 
+app.put('/update', (req,res) => {
+  const username = req.body.username;
+  const email = req.body.email;
+  db.query("UPDATE SET user email = ? WHERE username = ?", [email,username], (err,result) => {
+    if(err){
+      console.log(err);
+    } else{
+      res.send(result);
+    }
+  });
+})
 app.listen(3001, ()=> {
     console.log("Your server is running")
 })
