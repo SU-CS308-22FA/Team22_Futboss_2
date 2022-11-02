@@ -10,6 +10,8 @@ function App() {
   const [userList, setUserList] = useState([]);
 
   const [newEmail, setNewEmail] = useState("");
+  
+  const [loginStatus, setLoginStatus] = useState("");
 
  const signUp = () => {
   Axios.post('http://localhost:3001/create', {
@@ -51,6 +53,21 @@ const deleteUser = (username) => {
   });
 };
 
+const login = () => {
+  Axios.post("http://localhost:3001/login", {
+    username: username,
+    password: password,
+  }).then((response)=> {
+    if(response.data.message)
+    {
+      setLoginStatus(response.data.message)
+    }
+    else{
+      setLoginStatus(response.data[0].username)
+    }
+  });
+};
+
   return (
     <div className="App">
       <div className="reg_information">
@@ -67,12 +84,26 @@ const deleteUser = (username) => {
         } }
         />
         <label>Password</label>
-        <input type="text" 
+        <input type="password" 
         onChange={(event)=>{
           setPassword(event.target.value);
         } } 
         />
         <button onClick={signUp}>Sign Up</button>
+      </div>
+      <div className="login">
+        <h1>Login</h1>
+        <input type="text" placeholder='Username...'
+        onChange={(event)=>{
+          setUsername(event.target.value);
+        } }
+        />
+        <input type="password" placeholder='Password...'
+        onChange={(event)=>{
+          setPassword(event.target.value);
+        } }
+        />
+        <button onClick={login}> Login </button>
       </div>
       <div className="users">
         <button onClick={getUser}>Show User</button>
@@ -98,6 +129,9 @@ const deleteUser = (username) => {
          );
        })}
       </div>
+      
+      <h1>{loginStatus}</h1>
+      
     </div>
     
   );
