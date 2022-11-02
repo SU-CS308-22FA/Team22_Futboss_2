@@ -43,7 +43,7 @@ app.get("/user", (req, res) => {
 app.put('/update', (req,res) => {
   const username = req.body.username;
   const email = req.body.email;
-  db.query("UPDATE SET user email = ? WHERE username = ?", [email,username], (err,result) => {
+  db.query("UPDATE user SET email = ? WHERE username = ?", [email,username], (err,result) => {
     if(err){
       console.log(err);
     } else{
