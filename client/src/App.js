@@ -82,6 +82,7 @@ const updateUserEmail = (username) => {
             } }
             /> 
             <button onClick={() => {updateUserEmail(val.username)}}>Update</button>
+            <button>Delete</button>
           </div>
          </div>
          );
