@@ -41,6 +41,10 @@ const updateUserEmail = (username) => {
   });
 };
 
+const deleteUser = (username) => {
+  Axios.delete('http://localhost:3001/delete/${username}');
+}
+
   return (
     <div className="App">
       <div className="reg_information">
@@ -82,7 +86,7 @@ const updateUserEmail = (username) => {
             } }
             /> 
             <button onClick={() => {updateUserEmail(val.username)}}>Update</button>
-            <button>Delete</button>
+            <button onClick={() => {deleteUser(val.username)}}>Delete</button>
           </div>
          </div>
          );
