@@ -51,6 +51,17 @@ app.put('/update', (req,res) => {
     }
   });
 })
+
+app.delete('/delete/:username', (req,res) => {
+  const username = req.params.username;
+  db.query("DELETE FROM user WHERE username = ?", username, (err,result) => {
+    if(err){
+      console.log(err);
+    }else{
+      res.send(result);
+    }
+  });
+});
 app.listen(3001, ()=> {
     console.log("Your server is running")
 })
