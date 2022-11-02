@@ -103,10 +103,10 @@ const login = () => {
           setPassword(event.target.value);
         } }
         />
-        <button onClick={login}> Login </button>
+        <button style={{position:'absolute', left:700, top:400}} onClick={login}> Login </button>
       </div>
       <div className="users">
-        <button onClick={getUser}>Show User</button>
+        <button style={{position:'absolute', left:1050, top:400}} onClick={getUser}>Show User</button>
         {userList.map((val, key) => {
          return (
          <div className="user"> 
