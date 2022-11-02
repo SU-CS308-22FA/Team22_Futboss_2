@@ -58,9 +58,16 @@ function App() {
         {userList.map((val, key) => {
          return (
          <div className="user"> 
-          <h3>Username: {val.username}</h3> 
-          <h3>Email: {val.email}</h3> 
-          <h3>Password: {val.password}</h3> 
+          <div>
+            <h3>Username: {val.username}</h3> 
+            <h3>Email: {val.email}</h3> 
+            <h3>Password: {val.password}</h3> 
+          </div>
+          <div>
+            {" "}
+            <input type="text" placeholder="...@gmail.com"/> 
+            <button>Update</button>
+          </div>
          </div>
          );
        })}
