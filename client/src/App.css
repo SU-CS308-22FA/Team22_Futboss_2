@@ -21,9 +21,17 @@
   margin: 5px;
 }
 
-.reg_information button {
+button {
   width: 300px;
   height: 50px;
   margin-top: 15px;
 
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  flex-direction:column;
+  width: 100%;
+  background-color: aqua;
 }

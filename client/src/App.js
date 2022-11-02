@@ -7,6 +7,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userList, setUserList] = useState("");
 
  const signUp = () => {
   Axios.post('http://localhost:3001/create', {username: username, 
@@ -15,7 +16,13 @@ function App() {
   }).then(()=> {
     console.log("success");
   });
- }
+ };
+
+ const getUser = () => {
+  Axios.get("http://localhost:3001/user").then((response) => {
+    console.log("sucsess");
+ });
+};
 
   return (
     <div className="App">
@@ -40,7 +47,11 @@ function App() {
         />
         <button onClick={signUp}>Sign Up</button>
       </div>
+      <div className="user">
+      <button onClick={getUser}>Show User</button>
+      </div>
     </div>
+    
   );
 }
 
