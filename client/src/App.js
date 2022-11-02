@@ -7,20 +7,26 @@ function App() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userList, setUserList] = useState("");
+  const [userList, setUserList] = useState([]);
 
  const signUp = () => {
-  Axios.post('http://localhost:3001/create', {username: username, 
+  Axios.post('http://localhost:3001/create', {
+  username: username, 
   email: email, 
   password: password
   }).then(()=> {
-    console.log("success");
+    setUserList([...userList,{
+    username: username, 
+    email: email, 
+    password: password
+    },
+  ])
   });
  };
 
  const getUser = () => {
   Axios.get("http://localhost:3001/user").then((response) => {
-    console.log("sucsess");
+    setUserList(response.data);
  });
 };
 
@@ -47,8 +53,17 @@ function App() {
         />
         <button onClick={signUp}>Sign Up</button>
       </div>
-      <div className="user">
-      <button onClick={getUser}>Show User</button>
+      <div className="users">
+        <button onClick={getUser}>Show User</button>
+        {userList.map((val, key) => {
+         return (
+         <div className="user"> 
+          <h3>Username: {val.username}</h3> 
+          <h3>Email: {val.email}</h3> 
+          <h3>Password: {val.password}</h3> 
+         </div>
+         );
+       })}
       </div>
     </div>
     
