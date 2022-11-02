@@ -42,8 +42,14 @@ const updateUserEmail = (username) => {
 };
 
 const deleteUser = (username) => {
-  Axios.delete('http://localhost:3001/delete/${username}');
-}
+  Axios.delete(`http://localhost:3001/delete/${username}`).then((response) => {
+    setUserList(userList.filter((val => {
+      return val.username != username;
+    })
+    )
+    );
+  });
+};
 
   return (
     <div className="App">
