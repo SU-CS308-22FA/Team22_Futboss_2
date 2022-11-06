@@ -1,7 +1,10 @@
+
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  background-color:lightgreen
 }
 
 .reg_information {
@@ -48,5 +51,14 @@ button {
 .user h3{
   margin: 20px;
 
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  background-color: white;
+  width: 200px;
+  gap: 20px;
 }
 

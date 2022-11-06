@@ -43,7 +43,7 @@ export default function SignUp () {
             setPassword(event.target.value);
           } } 
           />
-          <Link to="/"><button onClick={signUp}>Sign Up</button></Link>
+          <Link to= "/"><button onClick={signUp}>Sign Up</button></Link>
         </div>
         
     )

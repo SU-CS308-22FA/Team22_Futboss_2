@@ -4,8 +4,10 @@ import Axios from 'axios'
 
 
 export default function Login () {
-    window.scrollTo(0, 0)
-    const [loginStatus, setLoginStatus] = useState("");
+    
+  window.scrollTo(0, 0)
+  
+  const [loginStatus, setLoginStatus] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [userList, setUserList] = useState([]);
@@ -20,7 +22,8 @@ export default function Login () {
             setLoginStatus(response.data.message)
           }
           else{
-            setLoginStatus(response.data[0].username)
+            //setLoginStatus(response.data[0].username)
+            window.location = "/profilepage";
           }
         });
       };
@@ -62,10 +65,11 @@ export default function Login () {
           setPassword(event.target.value);
         } }
         />
-        <button style={{position:'absolute', left:700, top:400}} onClick={login}> Login </button>
+        <button onClick={login}> Login </button>
+        <span>First time on Futboss?<Link to= "/signup">Register</Link></span>
       </div>
       <div className="users">
-      <button style={{position:'absolute', left:1050, top:400}} onClick={getUser}>Show User</button>
+      <button onClick={getUser}>Show User</button>
       {userList.map((val, key) => {
        return (
        <div className="user"> 
