@@ -8,7 +8,7 @@ app.use(express.json());
 
 const db = mysql.createConnection({
     user: 'sql7544337',
-    host: ' sql7.freesqldatabase.com',
+    host: 'sql7.freesqldatabase.com',
     password: 'zpPSh1rZ5m',
     database: 'sql7544337'
 });
@@ -87,7 +87,7 @@ app.post('/login', (req,res)=> {
   }
   );
 });
-app.listen(3001, ()=> {
+app.listen(process.env.PORT || 3001, ()=> {
     console.log("Your server is running")
 })
 
