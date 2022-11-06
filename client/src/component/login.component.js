@@ -2,7 +2,6 @@ import React, {Component, useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Axios from 'axios'
 
-
 export default function Login () {
     
   window.scrollTo(0, 0)
@@ -12,6 +11,8 @@ export default function Login () {
     const [username, setUsername] = useState("");
     const [userList, setUserList] = useState([]);
     const [newEmail, setNewEmail] = useState("");
+    const navigate = useNavigate();
+
     const login = () => {
         Axios.post("http://localhost:3001/login", {
           username: username,
@@ -23,7 +24,7 @@ export default function Login () {
           }
           else{
             //setLoginStatus(response.data[0].username)
-            window.location = "/profilepage";
+            window.location = `/profilepage/${username}`;
           }
         });
       };
