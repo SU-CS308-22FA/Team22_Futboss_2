@@ -9,7 +9,7 @@ export default function SignUp () {
     const [password, setPassword] = useState("");
     const [userList, setUserList] = useState([]);
     const signUp = () => {
-    Axios.post('http://localhost:3001/create', {
+    Axios.post('https://futboss-final-2.herokuapp.com/create', {
     username: username, 
     email: email, 
     password: password

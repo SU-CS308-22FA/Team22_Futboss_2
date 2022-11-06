@@ -5,7 +5,7 @@ import { userContext } from "../store/context";
 import Axios from "axios";
 
 const updateEmail = (username, email) => {
-  Axios.put("http://localhost:3001/update", {
+  Axios.put("https://futboss-final-2.herokuapp.com/update", {
     username,
     email,
   }).then((response) => {
