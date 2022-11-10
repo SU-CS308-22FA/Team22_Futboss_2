@@ -12,7 +12,17 @@ const db = mysql.createConnection({
     password: 'zpPSh1rZ5m',
     database: 'sql7544337'
 });
+app.get('/', (req, res, next) => {
 
+  res.status(200).json({
+      status: 'success',
+      data: {
+          name: 'Futboss',
+          version: '0.1.0'
+      }
+  });
+
+});
 app.post('/create', (req, res)=> {
     const username = req.body.username
     const email = req.body.email
