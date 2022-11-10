@@ -4,7 +4,7 @@ import Axios from "axios";
 import { userContext } from "../store/context";
 
 export const deleteUser = (username, setUserList, userList) => {
-  Axios.delete(`https://futboss-final-2.herokuapp.com/delete/${username}`).then((response) => {
+  Axios.delete(`http://localhost:3001/delete/${username}`).then((response) => {
     setUserList(
       userList.filter((val) => {
         return val.username != username;
@@ -14,7 +14,7 @@ export const deleteUser = (username, setUserList, userList) => {
 };
 
 export const getUser = (setUserList) => {
-  Axios.get("https://futboss-final-2.herokuapp.com/user").then((response) => {
+  Axios.get("http://localhost:3001/user").then((response) => {
     setUserList(response.data);
   });
 };
@@ -31,7 +31,7 @@ export function Login() {
 
   const login = () => {
     
-    Axios.post("https://futboss-final-2.herokuapp.com/login", {
+    Axios.post("http://localhost:3001/login", {
       username: username,
       password: password,
     }).then((response) => {
@@ -46,7 +46,7 @@ export function Login() {
     });
   };
   const updateUserEmail = (username) => {
-    Axios.put("https://futboss-final-2.herokuapp.com/update", {
+    Axios.put("http://localhost:3001/update", {
       email: newEmail,
       username: username,
     }).then((response) => {
