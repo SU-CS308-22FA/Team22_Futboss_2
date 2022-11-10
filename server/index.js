@@ -4,7 +4,7 @@ const mysql = require('mysql')
 const cors = require("cors");
 
 app.use(cors());
-app.use(express.json());
+app.use(express.static(path.join(__dirname + "/public")));
 
 const db = mysql.createConnection({
     user: 'sql7544337',
