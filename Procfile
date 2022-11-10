@@ -1,2 +1,2 @@
-web: node ./app.js
+web: ./server node index.js
 web: ./client npm start
