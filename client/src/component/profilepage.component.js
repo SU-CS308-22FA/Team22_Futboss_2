@@ -5,7 +5,7 @@ import { userContext } from "../store/context";
 import Axios from "axios";
 
 const updateEmail = (username, email) => {
-  Axios.put("http://localhost:3001/update", {
+  Axios.put("https://team22-futboss-2-o8ww.vercel.app/update", {
     username,
     email,
   }).then((response) => {

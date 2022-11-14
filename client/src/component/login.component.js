@@ -31,7 +31,7 @@ export function Login() {
 
   const login = () => {
     
-    Axios.post("http://localhost:3001/login", {
+    Axios.post("https://team22-futboss-2-o8ww.vercel.app/login", {
       username: username,
       password: password,
     }).then((response) => {
@@ -46,7 +46,7 @@ export function Login() {
     });
   };
   const updateUserEmail = (username) => {
-    Axios.put("http://localhost:3001/update", {
+    Axios.put("https://team22-futboss-2-o8ww.vercel.app/update", {
       email: newEmail,
       username: username,
     }).then((response) => {
