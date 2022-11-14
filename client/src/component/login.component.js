@@ -4,7 +4,7 @@ import Axios from "axios";
 import { userContext } from "../store/context";
 
 export const deleteUser = (username, setUserList, userList) => {
-  Axios.delete(`http://localhost:3001/delete/${username}`).then((response) => {
+  Axios.delete(`https://team22-futboss-2-o8ww.vercel.app/delete/${username}`).then((response) => {
     setUserList(
       userList.filter((val) => {
         return val.username != username;
@@ -14,7 +14,7 @@ export const deleteUser = (username, setUserList, userList) => {
 };
 
 export const getUser = (setUserList) => {
-  Axios.get("http://localhost:3001/user").then((response) => {
+  Axios.get("https://team22-futboss-2-o8ww.vercel.app/user").then((response) => {
     setUserList(response.data);
   });
 };
