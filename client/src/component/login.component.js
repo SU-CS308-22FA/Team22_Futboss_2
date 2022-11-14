@@ -4,7 +4,7 @@ import Axios from "axios";
 import { userContext } from "../store/context";
 
 export const deleteUser = (username, setUserList, userList) => {
-  Axios.delete(`https://team22-futboss-2-o8ww.vercel.app/delete/${username}`).then((response) => {
+  Axios.delete(`http://team22-futboss-2-o8ww.vercel.app/delete/${username}`).then((response) => {
     setUserList(
       userList.filter((val) => {
         return val.username != username;
@@ -14,7 +14,7 @@ export const deleteUser = (username, setUserList, userList) => {
 };
 
 export const getUser = (setUserList) => {
-  Axios.get("https://team22-futboss-2-o8ww.vercel.app/user").then((response) => {
+  Axios.get("http://team22-futboss-2-o8ww.vercel.app/user").then((response) => {
     setUserList(response.data);
   });
 };
@@ -31,7 +31,7 @@ export function Login() {
 
   const login = () => {
     
-    Axios.post("https://team22-futboss-2-o8ww.vercel.app/login", {
+    Axios.post("http://team22-futboss-2-o8ww.vercel.app/login", {
       username: username,
       password: password,
     }).then((response) => {
@@ -46,7 +46,7 @@ export function Login() {
     });
   };
   const updateUserEmail = (username) => {
-    Axios.put("https://team22-futboss-2-o8ww.vercel.app/update", {
+    Axios.put("http://team22-futboss-2-o8ww.vercel.app/update", {
       email: newEmail,
       username: username,
     }).then((response) => {
