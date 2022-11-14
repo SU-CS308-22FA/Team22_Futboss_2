@@ -4,6 +4,7 @@ const app = express()
 const mysql = require('mysql')
 const cors = require("cors");
 
+
 app.use(cors());
 app.use(express.static(path.join(__dirname + "/public")));
 

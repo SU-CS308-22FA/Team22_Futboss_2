@@ -9,7 +9,7 @@ export default function SignUp () {
     const [password, setPassword] = useState("");
     const [userList, setUserList] = useState([]);
     const signUp = () => {
-    Axios.post('https://team22-futboss-2-o8ww.vercel.app/create/', {
+    Axios.post('https://team22-futboss-2-o8ww.vercel.app/create', {
     username: username, 
     email: email, 
     password: password
