@@ -4,7 +4,7 @@ import Axios from "axios";
 import { userContext } from "../store/context";
 
 export const deleteUser = (username, setUserList, userList) => {
-  Axios.delete(`${process.env_API_URL}/delete/${username}`).then((response) => {
+  Axios.delete(`${process.env.REACT_APP_API_URL}/delete/${username}`).then((response) => {
     setUserList(
       userList.filter((val) => {
         return val.username != username;
@@ -14,7 +14,7 @@ export const deleteUser = (username, setUserList, userList) => {
 };
 
 export const getUser = (setUserList) => {
-  Axios.get(`${process.env_API_URL}/user`).then((response) => {
+  Axios.get(`${process.env.REACT_APP_API_URL}/user`).then((response) => {
     setUserList(response.data);
   });
 };
@@ -31,7 +31,7 @@ export function Login() {
 
   const login = () => {
     
-    Axios.post(`${process.env_API_URL}/login`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/login`, {
       username: username,
       password: password,
     }).then((response) => {
@@ -46,7 +46,7 @@ export function Login() {
     });
   };
   const updateUserEmail = (username) => {
-    Axios.put(`${process.env_API_URL}/update`, {
+    Axios.put(`${process.env.REACT_APP_API_URL}/update`, {
       email: newEmail,
       username: username,
     }).then((response) => {

@@ -9,7 +9,7 @@ export default function SignUp () {
     const [password, setPassword] = useState("");
     const [userList, setUserList] = useState([]);
     const signUp = () => {
-    Axios.post(`${process.env_API_URL}/create`, {
+    Axios.post(`${process.env.REACT_APP_API_URL}/create`, {
     username: username, 
     email: email, 
     password: password

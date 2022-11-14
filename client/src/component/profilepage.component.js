@@ -5,7 +5,7 @@ import { userContext } from "../store/context";
 import Axios from "axios";
 
 const updateEmail = (username, email) => {
-  Axios.put(`${process.env_API_URL}/update`, {
+  Axios.put(`${process.env.REACT_APP_API_URL}/update`, {
     username,
     email,
   }).then((response) => {
