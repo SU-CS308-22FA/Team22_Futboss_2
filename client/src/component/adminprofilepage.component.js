@@ -1,7 +1,7 @@
 
 import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { deleteUser } from "./adminlogin.component";
+import { deleteAdmin } from "./adminlogin.component";
 import { userContext } from "../store/context";
 import Axios from "axios";
 
@@ -26,7 +26,7 @@ export default function AdminProfilePage() {
             <Link to="/">
                 <button
                     onClick={() => {
-                        deleteUser(adminusername);
+                        deleteAdmin(adminusername);
                     }}
                 >
                     Admin Delete
