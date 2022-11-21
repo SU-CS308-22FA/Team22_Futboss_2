@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { userContext } from "../store/context";
 
+
 export const deleteUser = (username, setUserList, userList) => {
   Axios.delete(`${process.env.REACT_APP_API_URL}/delete/${username}`).then((response) => {
     setUserList(
@@ -30,7 +31,7 @@ export function Login() {
   const navigate = useNavigate();
 
   const login = () => {
-    
+    console.log(username);
     Axios.post(`${process.env.REACT_APP_API_URL}/login`, {
       username: username,
       password: password,
@@ -64,6 +65,7 @@ export function Login() {
     });
   };
 
+  
   return (
     <div>
       <div className="login">
