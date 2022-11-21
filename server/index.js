@@ -109,3 +109,28 @@ app.listen(process.env.PORT || 3001, ()=> {
     console.log("Your server is running")
 })
 
+
+app.post('/adminlogin', (req,res)=> {
+  const adminusername = req.body.adminusername;
+  const adminpassword = req.body.adminpassword;
+  console.log(username);
+  db.query(
+  "SELECT * FROM admin WHERE adminusername = ? AND adminpassword = ?",
+  [adminusername, adminpassword],
+  (err,result) => {
+    if(err)
+    {
+      res.send({err: err})
+    }
+    
+      if(result.length > 0)
+      {
+        res.send(result);
+      }
+      else{
+        res.send({message: "Wrong username password combination"})
+      }
+  
+  }
+  );
+});
