@@ -233,3 +233,14 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
   app.listen(process.env.PORT || 3001, ()=> {
       console.log("Your server is running")
   })
+
+  app.get("/showPlayer/:playername", (req, res) => {
+    const playername = req.params.playername;
+    db.query("SELECT * FROM player WHERE playername LIKE '%"+playername+"%'", playername, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
+     });
+    });

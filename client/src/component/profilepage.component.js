@@ -17,6 +17,12 @@ export default function ProfilePage() {
   const { user } = useContext(userContext);
   const { username } = useParams();
 
+  const showPlayer = (playername) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/showUser/${playername}`).then((response) => {
+      setPlayerList(response.data);
+    });
+  };
+
   const [newEmail, setNewEmail] = useState(user?.email ?? "");
   window.scrollTo(0, 0);
   return (
@@ -47,6 +53,21 @@ export default function ProfilePage() {
       >
         Update
       </button>
+      <input
+        type="text"
+        placeholder="Name"
+        value={playername}
+        onChange={(event) => {
+          setPlayerName(event.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          showPlayer(playername);
+        }}
+      >
+        Search
+      </button>
     </div>
   );
 }
