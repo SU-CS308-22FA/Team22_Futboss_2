@@ -184,3 +184,21 @@ db.query("DELETE FROM admin WHERE adminusername = ?", adminusername, (err,result
   }
 });
 });
+
+app.post('/createplayer', (req, res)=> {
+  const playerid = req.body.playerid
+  const playername = req.body.playername
+  const playerposition = req.body.playerposition
+  const playerteam = req.body.playerteam
+
+  db.query("INSERT INTO player (playerid, playername, playerposition, playerteam) VALUES (?,?,?,?)", 
+  [playerid,playername,playerposition,playerteam],  
+  (err,result) => {
+      if (err) {
+          console.log(err)
+      }
+      else{
+          res.send("Values inserted")
+      }
+  });
+});
