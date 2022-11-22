@@ -70,6 +70,18 @@ app.put('/update', (req,res) => {
   });
 })
 
+app.put('/updatepass', (req,res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  db.query("UPDATE user SET password = ? WHERE username = ?", [password,username], (err,result) => {
+    if(err){
+      console.log(err);
+    } else{
+      res.send(result);
+    }
+  });
+})
+
 app.delete('/delete/:username', (req,res) => {
   const username = req.params.username;
   db.query("DELETE FROM user WHERE username = ?", username, (err,result) => {
