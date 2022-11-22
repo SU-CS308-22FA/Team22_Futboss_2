@@ -85,6 +85,7 @@ app.post('/login', (req,res)=> {
   const username = req.body.username;
   const password = req.body.password;
   console.log(username);
+  console.log(path.join((__dirname, '/../client/public')));
   db.query(
   "SELECT * FROM user WHERE username = ? AND password = ?",
   [username, password],
@@ -105,6 +106,9 @@ app.post('/login', (req,res)=> {
   }
   );
 });
+
+app.get("/*", (req, res) => { console.log("I am here"); res.sendFile(path.join(__dirname,'./../client/public/index.html')); });
+
 app.listen(process.env.PORT || 3001, ()=> {
     console.log("Your server is running")
 })
