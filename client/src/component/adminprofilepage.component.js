@@ -3,22 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import { adminContext } from "../store/context";
 import Axios from "axios";
 
-export const deletePlayer = (playerid, setPlayerList, playerList) => {
-  Axios.delete(`${process.env.REACT_APP_API_URL}/deleteplayer/${playerid}`).then((response) => {
-    setPlayerList(
-      playerList.filter((val) => {
-        return val.playerid != playerid;
-      })
-    );
-  });
-};
 
-export const getPlayer = (setPlayerList) => {
-  Axios.get(`${process.env.REACT_APP_API_URL}/player`).then((response) => {
-    setPlayerList(response.data);
-  });
-};
 export default function AdminProfilePage() {
+
   window.scrollTo(0, 0);
   const { admin } = useContext(adminContext);
   const { adminusername } = useParams();
@@ -28,7 +15,7 @@ export default function AdminProfilePage() {
   const [playerposition, setPlayerPosition] = useState("");
   const [playerteam, setPlayerTeam] = useState("");
   const [playerList, setPlayerList] = useState([]);
-  
+
   const addPlayer = () => {
     Axios.post(`${process.env.REACT_APP_API_URL}/createplayer`, {
     playerid: playerid,
@@ -45,6 +32,24 @@ export default function AdminProfilePage() {
     ])
     });
    };
+
+   const getPlayer = () => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/player`).then((response) => {
+      setPlayerList(response.data);
+    });
+  };
+
+   const deletePlayer = (playerid, setPlayerList, playerList) => {
+    Axios.delete(`${process.env.REACT_APP_API_URL}/deleteplayer/${playerid}`).then((response) => {
+      setPlayerList(
+        playerList.filter((val) => {
+          return val.playerid != playerid;
+        })
+      );
+    });
+  };
+  
+  
   return (
     <div>
        <div className="reg_information">
