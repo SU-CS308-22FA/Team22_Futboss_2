@@ -110,10 +110,10 @@ app.listen(process.env.PORT || 3001, ()=> {
 })
 
 
-app.post('/adminlogin', (req,res)=> {
+app.post('/loginadmin', (req,res)=> {
   const adminusername = req.body.adminusername;
   const adminpassword = req.body.adminpassword;
-  console.log(username);
+  console.log(adminusername);
   db.query(
   "SELECT * FROM admin WHERE adminusername = ? AND adminpassword = ?",
   [adminusername, adminpassword],
@@ -133,4 +133,54 @@ app.post('/adminlogin', (req,res)=> {
   
   }
   );
+});
+
+app.post('/createadmin', (req, res)=> {
+  const adminusername = req.body.adminusername
+  const adminemail = req.body.adminemail
+  const adminpassword = req.body.adminpassword
+
+  db.query("INSERT INTO admin (adminusername, adminemail, adminpassword) VALUES (?,?,?)", 
+  [adminusername,adminemail,adminpassword],  
+  (err,result) => {
+      if (err) {
+          console.log(err)
+      }
+      else{
+          res.send("Values inserted")
+      }
+  });
+});
+
+app.get("/admin", (req, res) => {
+  db.query("SELECT * FROM admin", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.put('/adminupdate', (req,res) => {
+const adminusername = req.body.adminusername;
+const adminemail = req.body.adminemail;
+db.query("UPDATE admin SET adminemail = ? WHERE adminusername = ?", [adminemail,adminusername], (err,result) => {
+  if(err){
+    console.log(err);
+  } else{
+    res.send(result);
+  }
+});
+})
+
+app.delete('/deleteadmin/:adminusername', (req,res) => {
+const adminusername = req.params.adminusername;
+db.query("DELETE FROM admin WHERE adminusername = ?", adminusername, (err,result) => {
+  if(err){
+    console.log(err);
+  }else{
+    res.send(result);
+  }
+});
 });

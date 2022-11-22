@@ -88,6 +88,9 @@ export function Login() {
         <span>
           First time on Futboss?<Link to="/signup">Register</Link>
         </span>
+        <span>
+          Login as<Link to="/loginadmin">Admin</Link>
+        </span>
       </div>
       <div className="users">
         <button onClick={getUser}>Show User</button>

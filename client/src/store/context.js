@@ -17,3 +17,21 @@ export const UserProvider = ({children}) => {
         </userContext.Provider>
     )
 }
+
+export const adminContext = createContext({
+    admin: {
+        adminid: 1, 
+        adminusername: "test",
+        adminemail: "test@h.com",
+    }
+})
+
+export const AdminProvider = ({children}) => {
+    const [admin, setAdmin] = useState(null)
+
+    return (
+        <adminContext.Provider value={{admin, setAdmin}}>
+            {children}
+        </adminContext.Provider>
+    )
+}
