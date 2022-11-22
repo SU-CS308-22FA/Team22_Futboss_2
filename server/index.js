@@ -70,6 +70,46 @@ app.put('/update', (req,res) => {
   });
 })
 
+app.put('/updatename', (req,res) => {
+  const username = req.body.username;
+  const name = req.body.name;
+  db.query("UPDATE user SET name = ? WHERE username = ?", [name,username], (err,result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.send(result);
+    }
+  });
+})
+
+app.put('/updatesurname', (req,res) => {
+  const username = req.body.username;
+  const surname = req.body.surname;
+  console.log(surname);
+  db.query("UPDATE user SET surname = ? WHERE username = ?", [surname,username], (err,result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.send(result);
+    }
+  });
+})
+
+app.put('/updateage', (req,res) => {
+  const username = req.body.username;
+  const age = req.body.age;
+  db.query("UPDATE user SET age = ? WHERE username = ?", [age,username], (err,result) => {
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.send(result);
+    }
+  });
+})
+
 app.delete('/delete/:username', (req,res) => {
   const username = req.params.username;
   db.query("DELETE FROM user WHERE username = ?", username, (err,result) => {
