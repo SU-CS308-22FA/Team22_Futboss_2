@@ -99,11 +99,17 @@ export default function AdminProfilePage() {
                 >
                   Delete
                 </button>
+
               </div>
             </div>
           );
         })}
       </div>
+      <Link to="/">
+        <button>
+          Logout
+        </button>
+      </Link>
     </div>
   );
 }
