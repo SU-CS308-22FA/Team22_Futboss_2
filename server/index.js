@@ -107,6 +107,7 @@ app.post('/login', (req,res)=> {
   );
 });
 
+
 app.get("/*", (req, res) => { console.log("I am here"); res.sendFile(path.join(__dirname,'./../client/public/index.html')); });
 
 app.listen(process.env.PORT || 3001, ()=> {
