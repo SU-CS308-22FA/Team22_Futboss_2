@@ -108,14 +108,7 @@ app.post('/login', (req,res)=> {
 });
 
 
-app.use((req, res, next) => {
-  // If no previous routes match the request, send back the React app.
-  res.sendFile(__dirname + "/public/index.html"); 
-});
 
-app.listen(process.env.PORT || 3001, ()=> {
-    console.log("Your server is running")
-})
 
 
 app.post('/loginadmin', (req,res)=> {
@@ -231,3 +224,12 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
     }
   });
   });
+
+  app.use((req, res, next) => {
+    // If no previous routes match the request, send back the React app.
+    res.sendFile(__dirname + "/public/index.html"); 
+  });
+  
+  app.listen(process.env.PORT || 3001, ()=> {
+      console.log("Your server is running")
+  })
