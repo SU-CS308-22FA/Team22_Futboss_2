@@ -85,6 +85,7 @@ export function Login() {
           }}
         />
         <button onClick={login}> Login </button>
+        <h1>{loginStatus}</h1>
         <span>
           First time on Futboss?<Link to="/signup">Register</Link>
         </span>

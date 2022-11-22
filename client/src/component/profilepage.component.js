@@ -16,7 +16,6 @@ const updateEmail = (username, email) => {
 export default function ProfilePage() {
   const { user } = useContext(userContext);
   const { username } = useParams();
-
   const [newEmail, setNewEmail] = useState(user?.email ?? "");
   window.scrollTo(0, 0);
   return (
