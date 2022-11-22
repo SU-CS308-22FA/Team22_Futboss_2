@@ -88,46 +88,9 @@ export function Login() {
         <span>
           First time on Futboss?<Link to="/signup">Register</Link>
         </span>
-      </div>
-      <div className="users">
-        <button onClick={getUser}>Show User</button>
-        {userList.map((val, key) => {
-          return (
-            <div className="user">
-              <div>
-                <h3>Username: {val.username}</h3>
-                <h3>Email: {val.email}</h3>
-                <h3>Password: {val.password}</h3>
-              </div>
-              <div>
-                {" "}
-                <input
-                  type="text"
-                  placeholder="...@gmail.com"
-                  onChange={(event) => {
-                    setNewEmail(event.target.value);
-                  }}
-                />
-                <button
-                  onClick={() => {
-                    updateUserEmail(val.username);
-                  }}
-                >
-                  Update
-                </button>
-                <button
-                  onClick={() => {
-                    deleteUser(val.username, setUserList, userList);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          );
-        })}
-
-        <h1>{loginStatus}</h1>
+        <span>
+          Login as<Link to="/loginadmin">Admin</Link>
+        </span>
       </div>
     </div>
   );
