@@ -202,3 +202,24 @@ app.post('/createplayer', (req, res)=> {
       }
   });
 });
+
+app.get("/player", (req, res) => {
+  db.query("SELECT * FROM player", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.delete('/deleteplayer/:playerid', (req,res) => {
+  const playerid = req.params.playerid;
+  db.query("DELETE FROM player WHERE playerid = ?", playerid, (err,result) => {
+    if(err){
+      console.log(err);
+    }else{
+      res.send(result);
+    }
+  });
+  });

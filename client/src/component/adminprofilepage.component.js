@@ -3,7 +3,23 @@ import { Link, useParams } from "react-router-dom";
 import { adminContext } from "../store/context";
 import Axios from "axios";
 
+export const deletePlayer = (playerid, setPlayerList, playerList) => {
+  Axios.delete(`${process.env.REACT_APP_API_URL}/deleteplayer/${playerid}`).then((response) => {
+    setPlayerList(
+      playerList.filter((val) => {
+        return val.playerid != playerid;
+      })
+    );
+  });
+};
+
+export const getPlayer = (setPlayerList) => {
+  Axios.get(`${process.env.REACT_APP_API_URL}/player`).then((response) => {
+    setPlayerList(response.data);
+  });
+};
 export default function AdminProfilePage() {
+  window.scrollTo(0, 0);
   const { admin } = useContext(adminContext);
   const { adminusername } = useParams();
 
@@ -12,6 +28,7 @@ export default function AdminProfilePage() {
   const [playerposition, setPlayerPosition] = useState("");
   const [playerteam, setPlayerTeam] = useState("");
   const [playerList, setPlayerList] = useState([]);
+  
   const addPlayer = () => {
     Axios.post(`${process.env.REACT_APP_API_URL}/createplayer`, {
     playerid: playerid,
@@ -28,8 +45,6 @@ export default function AdminProfilePage() {
     ])
     });
    };
-
-  window.scrollTo(0, 0);
   return (
     <div>
        <div className="reg_information">
@@ -59,7 +74,31 @@ export default function AdminProfilePage() {
           />
           <button onClick={addPlayer}>Add Player</button>
         </div>
-        
+        <div className="players">
+        <button onClick={getPlayer}>Show Players</button>
+        {playerList.map((val, key) => {
+          return (
+            <div className="player">
+              <div>
+                <h3>playerid: {val.playerid}</h3>
+                <h3>playername: {val.playername}</h3>
+                <h3>playerposition: {val.playerposition}</h3>
+                <h3>playerteam: {val.playerteam}</h3>
+              </div>
+              <div>
+                {" "}
+                <button
+                  onClick={() => {
+                    deletePlayer(val.playerid, setPlayerList, playerList);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
