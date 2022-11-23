@@ -17,6 +17,10 @@ const updatePassword = (username, password) => {
   Axios.put(`${process.env.REACT_APP_API_URL}/updatepass`, {
     username,
     password,
+  }).then((response) => {
+    console.log(response);
+  });
+};
 
 
 const updateName = (username, name) => {

@@ -79,6 +79,10 @@ app.put('/updatepass', (req,res) => {
     if(err){
       console.log(err);
     } else{
+      res.send(result);
+    }
+  });
+});
 app.put('/updatename', (req,res) => {
   const username = req.body.username;
   const name = req.body.name;
@@ -286,4 +290,3 @@ app.delete("/relationships/:id", deleteRelationship)
       console.log("Your server is running")
   })
 
- // app.use("/relationships", relationshipRoutes); //follow player
