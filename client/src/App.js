@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminProvider, UserProvider } from "./store/context";
 import AdminProfilePage from "./component/adminprofilepage.component";
 import { LoginAdmin } from "./component/loginadmin.component";
+import PictureUploader from "./component/pictureuploader.component";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="adminprofilepage/:adminusername" element={<AdminProfilePage />} />
             <Route path="loginadmin" element={<LoginAdmin />} />
             <Route path="profilepage/:username" element={<ProfilePage />} />
+            <Route path="profilepage/:username/pictureuploader" element={<PictureUploader/>} />
           </Routes>
         </div>
       </BrowserRouter>
