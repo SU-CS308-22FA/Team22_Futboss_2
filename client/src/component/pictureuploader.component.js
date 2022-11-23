@@ -48,7 +48,7 @@ export default class PictureUploader extends React.Component {
       contentType: false,
       processData: false,
       success: function(response) {
-        // Code to handle a succesful upload
+        
       }
     });
   }
