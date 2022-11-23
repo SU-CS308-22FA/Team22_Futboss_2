@@ -5,6 +5,8 @@ export const userContext = createContext({
         id: 1, 
         username: "test",
         email: "test@h.com",
+        password: "password",
+
         name: "test_name",
         surname: "test_surname",
         age: 2

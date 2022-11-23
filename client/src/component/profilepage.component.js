@@ -13,6 +13,10 @@ const updateEmail = (username, email) => {
   });
 };
 
+const updatePassword = (username, password) => {
+  Axios.put(`${process.env.REACT_APP_API_URL}/updatepass`, {
+    username,
+    password,
 
 
 const updateName = (username, name) => {
@@ -84,6 +88,8 @@ export default function ProfilePage() {
   }
 
   const [newEmail, setNewEmail] = useState(user?.email ?? "");
+  const [newPassword, setNewPassword] = useState(user?.password ?? "");
+
   const [newName, setNewName] = useState(user?.name ?? "");
   const [newSurname, setNewSurname] = useState(user?.surname ?? "");
   const [newAge, setNewAge] = useState(user?.surname ?? 1);
@@ -195,6 +201,21 @@ export default function ProfilePage() {
         }}
       >
         Update Age
+      </button>
+      <input
+        type="password"
+        placeholder="New Password"
+        value={newPassword}
+        onChange={(event) => {
+          setNewPassword(event.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          updatePassword(username, newPassword);
+        }}
+      >
+        Update
       </button>
     </div>
 

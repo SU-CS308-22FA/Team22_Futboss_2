@@ -72,6 +72,13 @@ app.put('/update', (req,res) => {
   });
 })
 
+app.put('/updatepass', (req,res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  db.query("UPDATE user SET password = ? WHERE username = ?", [password,username], (err,result) => {
+    if(err){
+      console.log(err);
+    } else{
 app.put('/updatename', (req,res) => {
   const username = req.body.username;
   const name = req.body.name;
