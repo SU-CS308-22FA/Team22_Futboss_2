@@ -18,12 +18,16 @@ export default function ProfilePage() {
   const { username } = useParams();
 
   const showPlayer = (playername) => {
-    Axios.get(`${process.env.REACT_APP_API_URL}/showUser/${playername}`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/showplayer/${playername}`).then((response) => {
+      console.log(response);
+      console.log(playername);
       setPlayerList(response.data);
     });
   };
 
   const [newEmail, setNewEmail] = useState(user?.email ?? "");
+  const [playername, setPlayerName] = useState("");
+  const[playerList, setPlayerList] = useState([]);
   window.scrollTo(0, 0);
   return (
     <div>

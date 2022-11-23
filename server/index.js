@@ -224,9 +224,23 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
     }
   });
   });
+  
+  app.get("/showplayer/:playername", (req, res) => {
+    const playername = req.params.playername;
+    console.log("Hello world, I am at index");
+    db.query("SELECT * FROM player WHERE playername LIKE '%"+playername+"%'", playername, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        
+        res.send(result);
+      }
+     });
+    });
 
   app.use((req, res, next) => {
     // If no previous routes match the request, send back the React app.
+    console.log("Here");
     res.sendFile(__dirname + "/public/index.html"); 
   });
   
@@ -234,13 +248,4 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
       console.log("Your server is running")
   })
 
-  app.get("/showPlayer/:playername", (req, res) => {
-    const playername = req.params.playername;
-    db.query("SELECT * FROM player WHERE playername LIKE '%"+playername+"%'", playername, (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(result);
-      }
-     });
-    });
+  
