@@ -1,11 +1,13 @@
-const path = require('path');
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-const mysql = require('mysql')
-const cors = require("cors");
-const exp = require('constants');
+import path from "path"
+import express from "express"
+import bodyParser from "body-parser"
+import mysql from "mysql"
+import cors from "cors"
+import exp from "constants"
+import { getRelationships, addRelationship, deleteRelationship } from "./controllers/relationships.js";
 
+const app = express()
+const __dirname = path.resolve();
 app.use(cors());
 app.use(express.static(path.join(__dirname + "/public")));
 //app.use(express.json);
@@ -14,7 +16,7 @@ app.use(express.static(path.join(__dirname + "/public")));
 //}))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-const db = mysql.createConnection({
+export const db = mysql.createConnection({
     user: 'sql7544337',
     host: 'sql7.freesqldatabase.com',
     password: 'zpPSh1rZ5m',
@@ -125,7 +127,6 @@ app.post('/login', (req,res)=> {
   const username = req.body.username;
   const password = req.body.password;
   console.log(username);
-  console.log(path.join((__dirname, '/../client/public')));
   db.query(
   "SELECT * FROM user WHERE username = ? AND password = ?",
   [username, password],
@@ -265,6 +266,10 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
   });
   });
 
+  app.get("/relationships/:username", getRelationships)
+app.post("/relationships", addRelationship)
+app.delete("/relationships/:id", deleteRelationship)
+
   app.use((req, res, next) => {
     // If no previous routes match the request, send back the React app.
     res.sendFile(__dirname + "/public/index.html"); 
@@ -273,3 +278,5 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
   app.listen(process.env.PORT || 3001, ()=> {
       console.log("Your server is running")
   })
+
+ // app.use("/relationships", relationshipRoutes); //follow player
