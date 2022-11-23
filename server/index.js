@@ -4,7 +4,6 @@ import bodyParser from "body-parser"
 import mysql from "mysql"
 import cors from "cors"
 import exp from "constants"
-import relationshipRoutes from "./routes/relationships.js";
 import { getRelationships, addRelationship, deleteRelationship } from "./controllers/relationships.js";
 
 const app = express()
