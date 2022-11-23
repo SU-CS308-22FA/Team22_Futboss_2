@@ -13,6 +13,35 @@ const updateEmail = (username, email) => {
   });
 };
 
+
+
+const updateName = (username, name) => {
+  Axios.put(`${process.env.REACT_APP_API_URL}/updatename`,{
+    username,
+    name,
+  }).then((response) => {
+    console.log(response);
+  });
+};
+
+const updateSurname = (username, surname) => {
+  Axios.put(`${process.env.REACT_APP_API_URL}/updatesurname`,{
+    username,
+    surname,
+  }).then((response) => {
+    console.log(response);
+  });
+};
+
+const updateAge = (username, age) => {
+  Axios.put(`${process.env.REACT_APP_API_URL}/updateage`,{
+    username,
+    age,
+  }).then((response) => {
+    console.log(response);
+  });
+};
+
 export default function ProfilePage() {
   const { user } = useContext(userContext);
   const { username } = useParams();
@@ -55,6 +84,12 @@ export default function ProfilePage() {
   }
 
   const [newEmail, setNewEmail] = useState(user?.email ?? "");
+  const [newName, setNewName] = useState(user?.name ?? "");
+  const [newSurname, setNewSurname] = useState(user?.surname ?? "");
+  const [newAge, setNewAge] = useState(user?.surname ?? 1);
+
+  
+
   window.scrollTo(0, 0);
 
   return (
@@ -111,9 +146,58 @@ export default function ProfilePage() {
           updateEmail(username, newEmail);
         }}
       >
-        Update
+        Update Email
+      </button>
+      <br />
+      <input
+        type="text"
+        placeholder="Name"
+        value={newName}
+        onChange={(event) => {
+          setNewName(event.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          updateName(username, newName);
+        }}
+      >
+        Update Name
+      </button>
+      <br />
+      <input
+        type="text"
+        placeholder="Surname"
+        value={newSurname}
+        onChange={(event) => {
+          setNewSurname(event.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          updateSurname(username, newSurname);
+        }}
+      >
+        Update Surname
+      </button>
+      <br />
+      <input
+        type="number"
+        placeholder="Age"
+        value={newAge}
+        onChange={(event) => {
+          setNewAge(event.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          updateAge(username, newAge);
+        }}
+      >
+        Update Age
       </button>
     </div>
 
   );
 }
+
