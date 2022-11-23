@@ -14,7 +14,11 @@ const updateEmail = (username, email) => {
 };
 
 const updatePassword = (username, password) => {
+<<<<<<< Updated upstream
   Axios.put(`${process.env.REACT_APP_API_URL}/updatepass`, {
+=======
+  Axios.put(`${process.env.REACT_APP_API_URL}/update`, {
+>>>>>>> Stashed changes
     username,
     password,
   }).then((response) => {
