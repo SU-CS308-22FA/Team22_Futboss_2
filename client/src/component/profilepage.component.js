@@ -4,6 +4,7 @@ import { deleteUser } from "./login.component";
 import { userContext } from "../store/context";
 import Axios from "axios";
 
+
 const updateEmail = (username, email) => {
   Axios.put(`${process.env.REACT_APP_API_URL}/update`, {
     username,
@@ -102,6 +103,7 @@ export default function ProfilePage() {
 
   window.scrollTo(0, 0);
 
+
   return (
 
     <div>
@@ -140,6 +142,13 @@ export default function ProfilePage() {
           }}
         >
           Delete
+        </button>
+      </Link>
+      <Link to="pictureuploader">
+        <button
+          
+        >
+          Picture
         </button>
       </Link>
       <br />
