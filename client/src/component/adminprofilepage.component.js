@@ -14,6 +14,8 @@ export default function AdminProfilePage() {
   const [playername, setPlayerName] = useState("");
   const [playerposition, setPlayerPosition] = useState("");
   const [playerteam, setPlayerTeam] = useState("");
+  const [playerrating, setPlayerRating] = useState(1)
+  const [playernationality, setPlayerNationality] = useState("")
   const [playerList, setPlayerList] = useState([]);
 
   const addPlayer = () => {
@@ -21,13 +23,17 @@ export default function AdminProfilePage() {
     playerid: playerid,
     playername: playername, 
     playerposition: playerposition, 
-    playerteam: playerteam
+    playerteam: playerteam,
+    playerrating: playerrating,
+    playernationality: playernationality
     }).then(()=> {
       setPlayerList([...playerList,{
         playerid: playerid,
         playername: playername, 
         playerposition: playerposition, 
-        playerteam: playerteam
+        playerteam: playerteam,
+        playerrating:playerrating,
+        playernationality:playernationality
       },
     ])
     });
@@ -77,6 +83,18 @@ export default function AdminProfilePage() {
             setPlayerTeam(event.target.value);
           } } 
           />
+          <label>Player Rating</label>
+          <input type="number" 
+          onChange={(event)=>{
+            setPlayerRating(event.target.value);
+          } } 
+          />
+          <label>Player Nationality</label>
+          <input type="text"
+          onChange={(event)=>{
+            setPlayerNationality(event.target.value)
+          }}
+          />
           <button onClick={addPlayer}>Add Player</button>
         </div>
         <div className="players">
@@ -85,10 +103,11 @@ export default function AdminProfilePage() {
           return (
             <div className="player">
               <div>
-                <h3>playerid: {val.playerid}</h3>
                 <h3>playername: {val.playername}</h3>
                 <h3>playerposition: {val.playerposition}</h3>
                 <h3>playerteam: {val.playerteam}</h3>
+                <h3>playerrating: {val.playerrating}</h3>
+                <h3>playernationality: {val.playernationality}</h3>
               </div>
               <div>
                 {" "}
