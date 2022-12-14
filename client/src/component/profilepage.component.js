@@ -230,6 +230,15 @@ export default function ProfilePage() {
       >
         Update
       </button>
+
+      <br/>
+      <button
+        onClick={()=>{
+          window.location = `/profilepage/${username}/teams`
+        }}
+        >
+          Teams
+        </button>
     </div>
 
   );
