@@ -9,6 +9,9 @@ import { LoginAdmin } from "./component/loginadmin.component";
 import PictureUploader from "./component/pictureuploader.component";
 import TeamOfTheWeek from "./component/teamoftheweek.component";
 
+import BugReporter from "./component/bugreporter.component";
+import Teams from "./component/teams.component";
+import TeamPage from "./component/teampage.component";
 function App() {
   return (
     <AdminProvider>
@@ -23,6 +26,10 @@ function App() {
             <Route path="profilepage/:username" element={<ProfilePage />} />
             <Route path="profilepage/:username/pictureuploader" element={<PictureUploader/>} />
             <Route path="teamoftheweek/:username" element={<TeamOfTheWeek />} />
+            <Route path="profilepage/:username/bugreporter" element={<BugReporter/>} />
+
+            <Route path="profilepage/:username/teams" element={<Teams/>}/>
+            <Route path="profilepage/:username/teams/:teamname" element={<TeamPage/>}/>
           </Routes>
         </div>
       </BrowserRouter>

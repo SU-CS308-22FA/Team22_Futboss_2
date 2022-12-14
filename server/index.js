@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname + "/public")));
 //app.use(express.json);
 //app.use(express.urlencoded({
-//  extended:true
+//  extended:true 
 //}))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -53,6 +53,7 @@ async function main() {
       ]
     };
 
+    console.log(await futdb.collection("totw").findOne());
    /* futdb.collection("user").insertOne(myobj, function(err,res) {
       if(err) throw err;
       console.log("1 document inserted");
@@ -287,6 +288,37 @@ app.delete('/delete/:username', (req,res) => {
   });*/
 });
 
+app.post('/bugreport', (req,res)=> {
+  const name= req.body.name;
+  const email= req.body.email;
+  const subject= req.body.subject;
+  const message= req.body.message
+  console.log(req.body)
+  var myobj = {
+    "_id": {
+      "name": name,
+    },
+    "name": name,
+    "email": email,
+    "subject": subject,
+    "message":message,
+    
+  };
+
+  futdb.collection("bugreport").insertOne(myobj, function(err,_) {
+    if(err) {
+      console.log(err)
+    }
+    console.log("1 bug report inserted");
+    
+  })
+
+  res.status(200).json({
+    message:"success",
+})
+  
+});
+
 app.post('/login', (req,res)=> {
   const username = req.body.username;
   const password = req.body.password;
@@ -510,6 +542,33 @@ app.get("/totw", (req, res) => {
     res.send(results);
     
     console.log("1 document inserted");
+    })
+    });
+
+app.get('/specificteam/:teamname', (req,res) => {
+  
+  const teamname=req.params.teamname
+  console.log(teamname);
+  console.log("in specific team");
+  var myquery = {"_id":{"teamname":teamname}};
+
+  futdb.collection("team").findOne(myquery,function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
+  })
+
+});
+
+app.get("/team", (req, res) => {
+  
+  console.log("in team");
+  futdb.collection("team").find().toArray(function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
   })
  
   /*db.query("SELECT * FROM player", (err, result) => {
@@ -520,6 +579,8 @@ app.get("/totw", (req, res) => {
     }
   });*/
 });
+
+
 
 app.delete('/deleteplayer/:playerid', (req,res) => {
   const playerid = req.params.playerid;
@@ -552,4 +613,4 @@ app.delete("/relationships/:id", deleteRelationship)
       console.log("Your server is running")
   })
 
-
+  
