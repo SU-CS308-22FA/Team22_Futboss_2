@@ -129,6 +129,11 @@ export default function AdminProfilePage() {
           Logout
         </button>
       </Link>
+      <Link to="adminbugreports">
+        <button>
+          Bug Reports
+        </button>
+      </Link>
     </div>
   );
 }
