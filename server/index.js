@@ -53,6 +53,7 @@ async function main() {
       ]
     };
 
+    console.log(await futdb.collection("totw").findOne());
    /* futdb.collection("user").insertOne(myobj, function(err,res) {
       if(err) throw err;
       console.log("1 document inserted");
@@ -478,6 +479,42 @@ app.get("/player", (req, res) => {
     }
   });*/
 });
+
+app.get('/specificteam/:teamname', (req,res) => {
+  
+  const teamname=req.params.teamname
+  console.log(teamname);
+  console.log("in specific team");
+  var myquery = {"_id":{"teamname":teamname}};
+
+  futdb.collection("team").findOne(myquery,function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
+  })
+
+});
+
+app.get("/team", (req, res) => {
+  
+  console.log("in team");
+  futdb.collection("team").find().toArray(function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
+  })
+ 
+  /*db.query("SELECT * FROM player", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });*/
+});
+
 
 app.delete('/deleteplayer/:playerid', (req,res) => {
   const playerid = req.params.playerid;
