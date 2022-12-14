@@ -7,6 +7,7 @@ import { AdminProvider, UserProvider } from "./store/context";
 import AdminProfilePage from "./component/adminprofilepage.component";
 import { LoginAdmin } from "./component/loginadmin.component";
 import PictureUploader from "./component/pictureuploader.component";
+import BugReporter from "./component/bugreporter.component";
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
             <Route path="loginadmin" element={<LoginAdmin />} />
             <Route path="profilepage/:username" element={<ProfilePage />} />
             <Route path="profilepage/:username/pictureuploader" element={<PictureUploader/>} />
+            <Route path="profilepage/:username/bugreporter" element={<BugReporter/>} />
+
           </Routes>
         </div>
       </BrowserRouter>

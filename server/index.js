@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname + "/public")));
 //app.use(express.json);
 //app.use(express.urlencoded({
-//  extended:true
+//  extended:true 
 //}))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -266,6 +266,37 @@ app.delete('/delete/:username', (req,res) => {
   });*/
 });
 
+app.post('/bugreport', (req,res)=> {
+  const name= req.body.name;
+  const email= req.body.email;
+  const subject= req.body.subject;
+  const message= req.body.message
+  console.log(req.body)
+  var myobj = {
+    "_id": {
+      "name": name,
+    },
+    "name": name,
+    "email": email,
+    "subject": subject,
+    "message":message,
+    
+  };
+
+  futdb.collection("bugreport").insertOne(myobj, function(err,_) {
+    if(err) {
+      console.log(err)
+    }
+    console.log("1 bug report inserted");
+    
+  })
+
+  res.status(200).json({
+    message:"success",
+})
+  
+});
+
 app.post('/login', (req,res)=> {
   const username = req.body.username;
   const password = req.body.password;
@@ -510,4 +541,4 @@ app.delete("/relationships/:id", deleteRelationship)
       console.log("Your server is running")
   })
 
-
+  
