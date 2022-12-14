@@ -151,6 +151,13 @@ export default function ProfilePage() {
           Picture
         </button>
       </Link>
+      <Link to="bugreporter">
+        <button
+          
+        >
+          Report Bug
+        </button>
+      </Link>
       <br />
       <input
         type="text"
