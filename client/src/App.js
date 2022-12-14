@@ -8,6 +8,8 @@ import AdminProfilePage from "./component/adminprofilepage.component";
 import { LoginAdmin } from "./component/loginadmin.component";
 import PictureUploader from "./component/pictureuploader.component";
 import Teams from "./component/teams.component";
+import TeamPage from "./component/teampage.component";
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
             <Route path="profilepage/:username" element={<ProfilePage />} />
             <Route path="profilepage/:username/pictureuploader" element={<PictureUploader/>} />
             <Route path="profilepage/:username/teams" element={<Teams/>}/>
+            <Route path="profilepage/:username/teams/:teamname" element={<TeamPage/>}/>
           </Routes>
         </div>
       </BrowserRouter>

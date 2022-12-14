@@ -480,6 +480,22 @@ app.get("/player", (req, res) => {
   });*/
 });
 
+app.get('/specificteam/:teamname', (req,res) => {
+  
+  const teamname=req.params.teamname
+  console.log(teamname);
+  console.log("in specific team");
+  var myquery = {"_id":{"teamname":teamname}};
+
+  futdb.collection("team").findOne(myquery,function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
+  })
+
+});
+
 app.get("/team", (req, res) => {
   
   console.log("in team");
