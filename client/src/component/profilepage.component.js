@@ -246,6 +246,13 @@ export default function ProfilePage() {
         >
           Teams
         </button>
+        <div>
+          <button onClick={()=>{
+            window.location = `/profilepage/${username}/players`
+          }}>
+
+          </button>
+        </div>
     </div>
 
   );
