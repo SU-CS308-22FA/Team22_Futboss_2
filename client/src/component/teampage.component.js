@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
@@ -12,19 +12,20 @@ export default function TeamPage(){
     const { username,teamname } = useParams();
  
 
+
     const getTeam = (teamname) => {
         Axios.get(`${process.env.REACT_APP_API_URL}/specificteam/${teamname}`).then((response) => {
           setSummary(response.data);
         });
       };
+
+      useEffect(() => {
+        getTeam(teamname);
+      }, []);
     return(
     <div>
       <h1>{teamname}</h1>
-      <div>
-      <button onClick={() => {
-          getTeam(teamname);
-        }}>Info</button>
-      </div>
+     
     <div>
         <h2>Foundation Year: {summary.foundation}</h2>
         <h2>Number Of Trophies: {summary.numberoftrophies}</h2>
