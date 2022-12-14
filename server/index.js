@@ -164,6 +164,27 @@ app.put('/update', (req,res) => {
   });
 })
 
+app.put('/updaterating', (req,res) => {
+  const username = req.body.username;
+  const userrating = req.body.userrating;
+  
+  var myquery = {"_id":{"username":username}};
+  var newvalues = {$set: {"password":password}};
+
+  futdb.collection("totw").updateOne(myquery,newvalues, function(err,res){
+    if (err) throw err;
+    console.log("1 document updated");
+  });
+  db.query("UPDATE user SET userrating = ? WHERE username = ?", [userrating,username], (err,result) => {
+    if(err){
+      console.log(err);
+    } else{
+      res.send(result);
+    }
+  });
+})
+
+
 app.put('/updatepass', (req,res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -464,6 +485,27 @@ app.get("/player", (req, res) => {
   
   console.log("in player");
   futdb.collection("player").find().toArray(function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    
+    console.log("1 document inserted");
+  })
+ 
+  /*db.query("SELECT * FROM player", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });*/
+});
+
+
+
+app.get("/totw", (req, res) => {
+  
+  console.log("in totw");
+  futdb.collection("totw").find().toArray(function(err,results) {
     if(err) throw err;
     res.send(results);
     
