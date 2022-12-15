@@ -4,7 +4,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color:rgb(78, 24, 196)
+  background-image: url("https://wallpaperset.com/w/full/9/4/3/185419.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: repeat;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(255, 255, 255);
+  font-size: large;
 }
 
 .reg_information {
@@ -20,16 +26,21 @@ input {
   width: 300px;
   height: 50px;
   font-size: 20px;
-  padding-left: 10px;
   margin: 5px;
 }
 
 button {
-  width: 300px;
+  width: 100px;
   height: 50px;
   margin-top: 15px;
-
+  border-radius: 25px;
+  text-align: center;
+  background-color: yellow;
+  justify-content: center;
+  font-size: medium;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 
 .users {
   display: flex;
@@ -53,12 +64,14 @@ button {
 
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   padding: 50px;
-  background-color: white;
   width: 200px;
   gap: 20px;
 }
 
+a {
+  color: yellow;
+}

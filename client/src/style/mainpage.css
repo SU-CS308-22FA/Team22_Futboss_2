@@ -1,0 +1,50 @@
+.playerList {
+    display:flex;
+    align-items:center;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .players {
+    width: 400px;
+    height: 450px;
+    background-color: #b1edec;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin: 10px;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(0, 0, 0);
+  }
+  
+  .h1 {
+      border: none;
+  }
+  
+  .logo {
+    border-radius: 50%;
+      background-color: rgb(208, 198, 184);
+  }
+  
+  .headline {
+    color: #03396c;
+  }
+  
+  .button {
+    align-items: center;
+  }
+  
+  .search {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .toget {
+    display: flex;
+    flex-direction: row;
+  }
