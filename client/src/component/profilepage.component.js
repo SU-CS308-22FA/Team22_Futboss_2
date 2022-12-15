@@ -248,6 +248,7 @@ export default function ProfilePage() {
           Teams
         </button>
 
+
         <br/>
       <button
         onClick={()=>{
@@ -256,6 +257,13 @@ export default function ProfilePage() {
         >
           Team of The Week
         </button>
+        <div>
+          <button onClick={()=>{
+            window.location = `/profilepage/${username}/players`
+          }}>
+            Players
+          </button>
+        </div>
     </div>
     
 
