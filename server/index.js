@@ -186,6 +186,7 @@ app.put('/updaterating', (req,res) => {
 })
 
 
+
 app.put('/updatepass', (req,res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -316,6 +317,36 @@ app.post('/bugreport', (req,res)=> {
   res.status(200).json({
     message:"success",
 })
+  
+});
+
+app.post('/specificplayer/:playerid/:playername/comment', (req,res)=> {
+  const playerid= req.params.playerid;
+  const playername= req.params.playername;
+  const comment= req.body.comment;
+  const username= req.body.username;
+  console.log(req.body)
+  var myquery = {
+    "_id": {
+      "playerid": playerid,
+    }
+    
+  };
+  var newvalues = {$push: {"comment":{
+                                      "username": username,
+                                      "commentmessage":comment
+  }
+}};
+
+
+
+  futdb.collection("player").update(myquery,newvalues, function(err,results){
+    if (err) throw err;
+    res.send(results);
+    console.log("1 document updated");
+  });
+
+ 
   
 });
 
@@ -520,7 +551,7 @@ app.get("/player", (req, res) => {
     if(err) throw err;
     res.send(results);
     
-    console.log("1 document inserted");
+    console.log(results);
   })
  
   /*db.query("SELECT * FROM player", (err, result) => {
@@ -553,6 +584,24 @@ app.get('/specificteam/:teamname', (req,res) => {
   var myquery = {"_id":{"teamname":teamname}};
 
   futdb.collection("team").findOne(myquery,function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
+  })
+
+});
+
+app.get('/specificplayer/:playerid/:playername', (req,res) => {
+  
+  const playerid=req.params.playerid
+  const playername=req.params.playername
+  console.log(playername);
+  console.log("in specific player");
+  console.log(playerid);
+  var myquery = {"_id":{"playerid":playerid}};
+
+  futdb.collection("player").findOne(myquery,function(err,results) {
     if(err) throw err;
     res.send(results);
     console.log(results);
