@@ -186,6 +186,7 @@ app.put('/updaterating', (req,res) => {
 })
 
 
+
 app.put('/updatepass', (req,res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -316,6 +317,36 @@ app.post('/bugreport', (req,res)=> {
   res.status(200).json({
     message:"success",
 })
+  
+});
+
+app.post('/specificplayer/:playerid/:playername/comment', (req,res)=> {
+  const playerid= req.params.playerid;
+  const playername= req.params.playername;
+  const comment= req.body.comment;
+  const username= req.body.username;
+  console.log(req.body)
+  var myquery = {
+    "_id": {
+      "playerid": playerid,
+    }
+    
+  };
+  var newvalues = {$push: {"comment":{
+                                      "username": username,
+                                      "commentmessage":comment
+  }
+}};
+
+
+
+  futdb.collection("player").update(myquery,newvalues, function(err,results){
+    if (err) throw err;
+    res.send(results);
+    console.log("1 document updated");
+  });
+
+ 
   
 });
 

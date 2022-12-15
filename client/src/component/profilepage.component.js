@@ -250,7 +250,7 @@ export default function ProfilePage() {
           <button onClick={()=>{
             window.location = `/profilepage/${username}/players`
           }}>
-
+            Players
           </button>
         </div>
     </div>

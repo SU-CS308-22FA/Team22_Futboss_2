@@ -7,6 +7,8 @@ export function PlayerPage(){
     /*const [playerrating, setPlayerRating] = useState(1)*/
     const { username,playerid,playername } = useParams();
     const [playerposition,setPlayerPosition] = useState("");
+    const [comment, setComment] = useState("");
+    const [commentList,setCommentList] = useState([]);
     const str2 = "";
 
 
@@ -14,8 +16,26 @@ export function PlayerPage(){
         Axios.get(`${process.env.REACT_APP_API_URL}/specificplayer/${playerid}/${playername}`).then((response) => {
           setSummary(response.data);
           setPlayerPosition(response.data.playerposition);
+          setCommentList(response.data.comment);
         });
       };
+    
+     /* const postComment = (comment) => {
+        Axios.post(`${process.env.REACT_APP_API_URL}/specificplayer/${playerid}/${playername}/comment`).then(() => {
+            getPlayer(playerid,playername);
+        }) 
+      }*/
+
+      const postComment = (comment) => {
+        console.log(comment);
+        Axios.post(`${process.env.REACT_APP_API_URL}/specificplayer/${playerid}/${playername}/comment`, {
+            comment: comment,
+            username:username
+        }).then(() => {
+            console.log("selam");
+            getPlayer(playerid,playername);
+        });
+        };
 
       useEffect(() => {
         getPlayer(playerid,playername);
@@ -30,8 +50,29 @@ export function PlayerPage(){
         <h2>Player Team: {summary.playerteam}</h2>
         <h2>Player Rating: {summary.playerrating}</h2>
         <h3>Player Nationality: {summary.playernationality}</h3> 
+        <div>
+        <input type="text" placeholder="Your comment" onChange={(event) => {
+            setComment(event.target.value);
+          }}
+          />
+         <button onClick={() => {
+                    postComment(comment);
+                  }}>Comment</button> 
 
-
+        </div>
+        <div>
+        {commentList?.map((val, key) => {
+          return (
+            <div className="comments">
+              <div>
+                <h3>Username: {val.username} Comment: {val.commentmessage}</h3>
+                
+              </div>
+              
+            </div>
+          );
+        })}
+        </div>
     </div>
       
     </div>
