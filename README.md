@@ -44,6 +44,20 @@ There are two ways to obtain the code:
 
 2- Getting the source code from GitHub as a zip file. The green "Code" button is clicked, and a download ZIP is opened to obtain the code. It is then necessary to unzip the file. You then open the unzipped code file to view the source code in your preferred Integrated Development Environment.
 ### Layout of the Directory
+- server
+    - controllers
+      - relationships.js → db relationships
+    - package.json → Dependencies of the application 
+    - index.js → all db funtions, classes and db connection
+    - db.js → The database connection file
+
+- client
+    - public → Public files like the application icon
+    - src → All of the pages, routes, context files, components
+      - component → pages
+      - App.css → css file for frontend
+      - index.js → run file
+    - package.json → Dependencies of the application
 ### Build and Deploy 
 We used railway to deploy our project.
 1. First, you need to fork this repository to create a repository in your github.
