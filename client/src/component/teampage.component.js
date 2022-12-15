@@ -12,7 +12,11 @@ export default function TeamPage(){
     const { username,teamname } = useParams();
  
 
-
+    /**
+ * This function returns the team with name written in input.
+ * @param {string} input A team name
+ * @returns {object} returns the team information as a json object.
+ */
     const getTeam = (teamname) => {
         Axios.get(`${process.env.REACT_APP_API_URL}/specificteam/${teamname}`).then((response) => {
           setSummary(response.data);
