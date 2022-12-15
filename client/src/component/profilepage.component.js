@@ -111,30 +111,8 @@ export default function ProfilePage() {
     <div>
       <div class="row">
       <div class="column">
-      <div>{username}</div>
-      <Link to="/">
-        <button
-          onClick={() => {
-            deleteUser(username);
-          }}
-        >
-          Delete
-        </button>
-      </Link>
-      <Link to="pictureuploader">
-        <button
-          
-        >
-          Picture
-        </button>
-      </Link>
-      <Link to="bugreporter">
-        <button
-          
-        >
-          Report Bug
-        </button>
-      </Link>
+      <div>Welcome, {username}</div>
+      
       <br />
       <input
         type="text"
@@ -214,7 +192,6 @@ export default function ProfilePage() {
       >
         Update
       </button>
-
       <br/>
       <button
         onClick={()=>{
@@ -223,19 +200,43 @@ export default function ProfilePage() {
         >
           Teams
         </button>
-        <div>
-          <button onClick={()=>{
+        <button onClick={()=>{
             window.location = `/profilepage/${username}/players`
           }}>
             Players
           </button>
+        <div>
+          <Link to="/">
+          <br/>
+        <button
+          onClick={() => {
+            deleteUser(username);
+          }}
+        >
+          Delete My Profile
+        </button>
+      </Link>
+      <Link to="pictureuploader">
+        <button
+          
+        >
+          Upload Picture
+        </button>
+      </Link>
+      <Link to="bugreporter">
+        <button
+          
+        >
+          Report a Bug
+        </button>
+      </Link>
           </div>
           <div class="column">
-      <div className="players">
+      <div className="showplayers">
         <button onClick={getPlayer}>Show Players</button>
         {playerList.map((val, key) => {
           return (
-            <div className="playerList">
+            <div className="playersprofile">
               <div>
                 <h3>playerid: {val.playerid}</h3>
                 <h3>playername: {val.playername}</h3>

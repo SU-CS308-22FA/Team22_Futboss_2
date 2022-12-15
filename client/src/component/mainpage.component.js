@@ -41,13 +41,7 @@ export default function MainPage() {
                     if (val.playerteam === input) {
                         return (
                             <ol className="players" key={val.id} >
-                                <h1 className="stadium">{val.p_num} - {val.playername}</h1>
-                                <p className="playernationality">{val.playernationality}</p>
-                                <p className="playerposition">{val.playerposition}</p>
-                                <p className="playerposition">{val.playerposition}</p>
-                                <p className="playerrating">Position: {val.playerrating}</p>
-                                <p className="playerteam">Position: {val.playerteam}</p>
-
+                                <p className="playername">{val.playername} | Nationality: {val.playernationality} | Position: {val.playerposition} | Rating: {val.playerrating} | Team: {val.playerteam}</p>
                                 <div>
                                 </div>
                                 

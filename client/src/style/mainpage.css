@@ -5,20 +5,18 @@
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    line-height: 0.1;
   }
   
   .players {
-    width: 400px;
-    height: 450px;
-    background-color: #b1edec;
-    border: 1px solid black;
-    border-radius: 15px;
-    margin: 10px;
+    width: 100%;
+    height: 5%;
     display: flex;
-    padding: 10px;
     align-items: center;
     flex-direction: column;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    line-height: 1;
+    background-color: rgb(0, 0, 0);
   }
   
   .h1 {
