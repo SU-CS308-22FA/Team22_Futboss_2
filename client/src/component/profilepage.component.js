@@ -116,6 +116,7 @@ export default function ProfilePage() {
                 <h3>playerid: {val.playerid}</h3>
                 <h3>playername: {val.playername}</h3>
                 <h3>playerposition: {val.playerposition}</h3>
+                <h3>playerrating: {val.playerrating}</h3>
                 <h3>playerteam: {val.playerteam}</h3>
               </div>
               <div>
@@ -246,7 +247,19 @@ export default function ProfilePage() {
         >
           Teams
         </button>
+
+        <br/>
+      <button
+        onClick={()=>{
+          window.location = `/profilepage/${username}/teamoftheweek`
+        }}
+        >
+          Team of The Week
+        </button>
     </div>
+    
+
+
 
   );
 }
