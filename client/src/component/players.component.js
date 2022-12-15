@@ -8,6 +8,11 @@ export default function Players(){
     const { username } = useParams();
  
 
+    /**
+ * This function gets all of its players from the db.
+ * 
+ * @returns {object} returns all the players from the database as an array of json object.
+ */
     const getPlayers = () => {
         Axios.get(`${process.env.REACT_APP_API_URL}/player`).then((response) => {
           setPlayerList(response.data);
