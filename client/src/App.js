@@ -29,7 +29,7 @@ function App() {
             <Route path="loginadmin" element={<LoginAdmin />} />
             <Route path="profilepage/:username" element={<ProfilePage />} />
             <Route path="profilepage/:username/pictureuploader" element={<PictureUploader/>} />
-            <Route path="teamoftheweek/:username" element={<TeamOfTheWeek />} />
+            <Route path="profilepage/:username/teamoftheweek" element={<TeamOfTheWeek />} />
             <Route path="profilepage/:username/bugreporter" element={<BugReporter/>} />
             <Route path="adminprofilepage/:adminusername/adminbugreports" element={<Bugs />} />
             <Route path="profilepage/:username/teams" element={<Teams/>}/>
