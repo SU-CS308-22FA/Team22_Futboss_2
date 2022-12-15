@@ -317,8 +317,48 @@ app.post('/bugreport', (req,res)=> {
   res.status(200).json({
     message:"success",
 })
-  
+
 });
+
+app.post('/bugcomment', (req,res)=> {
+  const adminusername= req.body.adminusername;
+  const comment= req.body.comment;
+  const bug_id = req.body.bug_id;
+  console.log(bug_id);
+  console.log(comment);
+
+  console.log(req.body)
+  var myobj = {
+    "_id":  bug_id
+
+    
+  };
+  var newvalues = {$set: {"comment":comment}};
+
+  futdb.collection("bugreport").updateOne(myobj,newvalues, function(err,results){
+    if (err) throw err;
+    console.log("1 document updated");
+    res.send(results);
+  });
+    
+  });
+
+
+
+app.get('/bugs', (req, res) => {
+  
+  console.log("in bugs");
+  futdb.collection("bugreport").find().toArray(function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    
+    
+    console.log(results);
+  })
+ 
+});
+  
+
 
 app.post('/specificplayer/:playerid/:playername/comment', (req,res)=> {
   const playerid= req.params.playerid;
@@ -652,6 +692,7 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
 app.get("/relationships/:username", getRelationships)
 app.post("/relationships", addRelationship)
 app.delete("/relationships/:id", deleteRelationship)
+
 
   app.use((req, res, next) => {
     // If no previous routes match the request, send back the React app.
