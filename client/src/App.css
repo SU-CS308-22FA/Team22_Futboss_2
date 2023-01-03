@@ -1,11 +1,5 @@
 
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color:rgb(78, 24, 196)
-}
+
 
 .reg_information {
   display: flex;
