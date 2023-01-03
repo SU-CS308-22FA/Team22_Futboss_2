@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 //import { deleteUser } from "./login.component";
 import { userContext } from "../store/context";
@@ -25,6 +25,12 @@ export default function ProfilePage() {
   const [playerposition, setPlayerPosition] = useState("");
   const [playerteam, setPlayerTeam] = useState("");
   const [playerList, setPlayerList] = useState([]);
+  const [playerGk, setPlayerGk] = useState({})
+  const [playerDefense, setPlayerDefense] = useState([]);
+  const [playerMidfield, setPlayerMidfield] = useState([]);
+  const [playerForward, setPlayerForward] = useState([]);
+
+
   const [followedPlayers, setFollowedPlayers] = useState([])
 
   //const [playerrating, setPlayerRating] = useState(1)
@@ -32,14 +38,40 @@ export default function ProfilePage() {
 
   
   
-  const getPlayer = () => {
-    Axios.get(`${process.env.REACT_APP_API_URL}/totw`).then((response) => {
-      console.log(response.data)
-      setPlayerList(response.data);
+  const getGk = () => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/totw/gk`).then((response) => {
+      console.log(response.data);
+      console.log("selam");
+      setPlayerName(response.data[0].playername);
+      setPlayerPosition(response.data[0].playerposition);
+      setPlayerTeam(response.data[0].playerteam);
     });
     //getFollowedPlayers()
   };
 
+  const getDefense = () => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/totw/defense`).then((response) => {
+      console.log(response.data)
+      setPlayerDefense(response.data);
+    });
+    //getFollowedPlayers()
+  };
+
+  const getMidfield = () => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/totw/midfield`).then((response) => {
+      console.log(response.data)
+      setPlayerMidfield(response.data);
+    });
+    //getFollowedPlayers()
+  };
+
+  const getForward = () => {
+    Axios.get(`${process.env.REACT_APP_API_URL}/totw/forward`).then((response) => {
+      console.log(response.data)
+      setPlayerForward(response.data);
+    });
+    //getFollowedPlayers()
+  };
 
   //const [newEmail, setNewEmail] = useState(user?.email ?? "");
   //const [newName, setNewName] = useState(user?.name ?? "");
@@ -49,6 +81,24 @@ export default function ProfilePage() {
   
 
   window.scrollTo(0, 0);
+  
+  
+  useEffect(() => {
+    getGk();
+  },[]);
+  
+  useEffect(() => {
+    getDefense();
+  },[]);
+  
+  useEffect(() => {
+    getMidfield();
+  },[]);
+
+  useEffect(() => {
+    getForward();
+  },[]);
+
 
   return (
     <center>
@@ -60,38 +110,38 @@ export default function ProfilePage() {
      <div class="interior"></div>
      <div class="penalty"></div>           
      <div class="gk">
-      <text>Neuer</text>
+     <a href={process.env.REACT_APP_API_URL}>link text</a>
+      <text>{playername}</text>
+     </div>
+     <div class="lb">
+      <text>{playerDefense[0]?.playername}</text>
+     </div>
+     <div class="leftcb">
+      <text>{playerDefense[1]?.playername}</text>
      </div>
      <div class="rightcb">
-       <text>Puyol</text>
-     </div>
-      <div class="leftcb">
-       <text>Pique</text>
-     </div>
-    
-     <div class="lb">
-       <text>Jordi Alba</text>
+      <text>{playerDefense[2]?.playername}</text>
      </div>
      <div class="rb">
-       <text>Dani Alves</text>
+      <text>{playerDefense[3]?.playername}</text>
      </div>
      <div class="lm">
-       <text>Mane</text>
+      <text>{playerMidfield[0]?.playername}</text>
      </div>
      <div class="lcm">
-       <text>Iniesta</text>
+      <text>{playerMidfield[1]?.playername}</text>
      </div>
      <div class="rcm">
-       <text>Xavi</text>
+      <text>{playerMidfield[2]?.playername}</text>
      </div>
      <div class="rm">
-       <text>Salah</text>
+      <text>{playerMidfield[3]?.playername}</text>
      </div>
      <div class="lst">
-       <text>Haaland</text>
+       <text>{playerForward[0]?.playername}</text>
      </div>
      <div class="rst">
-       <text>Ronaldo</text>
+       <text>{playerForward[1]?.playername}</text>
      </div>
   
   </div>

@@ -605,16 +605,49 @@ app.get("/player", (req, res) => {
 
 
 
-app.get("/totw", (req, res) => {
+app.get("/totw/gk", (req, res) => {
   
   console.log("in totw");
-  futdb.collection("totw").find().toArray(function(err,results) {
+  futdb.collection("totw").find({"playerposition": "goalkeeper"}).toArray(function(err,results) {
     if(err) throw err;
     res.send(results);
     
     console.log("1 document inserted");
     })
     });
+
+  app.get("/totw/defense", (req, res) => {
+
+    console.log("in totw");
+    futdb.collection("totw").find({"playerposition": "defender"}).toArray(function(err,results) {
+      if(err) throw err;
+      res.send(results);
+      
+      console.log("1 document inserted");
+      })
+      });
+  
+  app.get("/totw/midfield", (req, res) => {
+
+    console.log("in totw");
+    futdb.collection("totw").find({"playerposition": "midfield"}).toArray(function(err,results) {
+      if(err) throw err;
+      res.send(results);
+      
+      console.log("1 document inserted");
+      })
+      });
+  
+  app.get("/totw/forward", (req, res) => {
+
+    console.log("in totw forward");
+    futdb.collection("totw").find({"playerposition": "striker"}).toArray(function(err,results) {
+      if(err) throw err;
+      res.send(results);
+      
+      console.log("1 document inserted");
+      })
+      });
 
 app.get('/specificteam/:teamname', (req,res) => {
   

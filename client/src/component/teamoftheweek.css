@@ -154,7 +154,7 @@ text {
   content: "";
   color: white;
   position: absolute;
-  top: 65%;
+  top: 55%;
   left: 20%;
   display: block;
   width: 3%;
@@ -166,7 +166,7 @@ text {
   content: "";
   color: white;
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 20%;
   display: block;
   width: 3%;
@@ -366,7 +366,7 @@ text {
   content: "";
   position: absolute;
   color: white;
-  top: 35%;
+  top: 30%;
   left: 80%;
   display: block;
   width: 3%;
@@ -378,7 +378,7 @@ text {
   content: "";
   position: absolute;
   color: white;
-  top: 60%;
+  top: 55%;
   left: 80%;
   display: block;
   width: 3%;

@@ -15,6 +15,7 @@ export function PlayerPage(){
     const getPlayer = (playerid,playername) => {
         Axios.get(`${process.env.REACT_APP_API_URL}/specificplayer/${playerid}/${playername}`).then((response) => {
           setSummary(response.data);
+          console.log(response.data);
           setPlayerPosition(response.data.playerposition);
           setCommentList(response.data.comment);
         });
