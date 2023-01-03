@@ -110,7 +110,6 @@ export default function ProfilePage() {
      <div class="interior"></div>
      <div class="penalty"></div>           
      <div class="gk">
-     <a href={process.env.REACT_APP_API_URL}>link text</a>
       <text>{playername} evet</text>
      </div>
      <div class="lb">

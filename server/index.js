@@ -729,6 +729,7 @@ app.delete("/relationships/:id", deleteRelationship)
 
   app.use((req, res, next) => {
     // If no previous routes match the request, send back the React app.
+    console.log("Not found");
     res.sendFile(__dirname + "/public/index.html"); 
   });
   
