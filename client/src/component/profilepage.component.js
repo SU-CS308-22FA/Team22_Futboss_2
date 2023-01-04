@@ -113,6 +113,7 @@ export default function ProfilePage() {
       <div class="column">
       <div>Welcome, {username}</div>
       
+
       <br />
       <input
         type="text"
@@ -201,6 +202,7 @@ export default function ProfilePage() {
           Teams
         </button>
         <button onClick={()=>{
+
             window.location = `/profilepage/${username}/players`
           }}>
             Players
@@ -263,6 +265,9 @@ export default function ProfilePage() {
         </div>
         </div>
     </div>
+    
+
+
 
   );
 }
