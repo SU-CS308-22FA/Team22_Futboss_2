@@ -11,7 +11,7 @@ const app = express()
 const __dirname = path.resolve();
 const uri = "mongodb+srv://futboss2:futboss2022@cluster0.48gglji.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(uri);
-var futdb = client.db("futboss2");
+export var futdb = client.db("futboss2");
 app.use(cors());
 app.use(express.static(path.join(__dirname + "/public")));
 //app.use(express.json);
@@ -669,6 +669,24 @@ app.get("/team", (req, res) => {
   });*/
 });
 
+app.get('/followedplayers/:username', async (req, res) => {
+  try {
+    const result = await futdb.collection('user').findOne({ _id: { username: req.params.username } });
+
+    if (result?.following) {
+      const playerids = result.following.map((item) => item.playerid)
+      const players = await futdb.collection('player').find({ "_id.playerid": { $in: playerids }  }).toArray();
+      
+      console.log(players)
+      res.send(players)
+      return
+    }
+    res.send([])
+  } catch (e) {
+    res.send(e);
+  }
+})
+
 
 
 app.delete('/deleteplayer/:playerid', (req,res) => {
@@ -691,7 +709,7 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
 
 app.get("/relationships/:username", getRelationships)
 app.post("/relationships", addRelationship)
-app.delete("/relationships/:id", deleteRelationship)
+app.put("/relationships", deleteRelationship)
 
 
   app.use((req, res, next) => {

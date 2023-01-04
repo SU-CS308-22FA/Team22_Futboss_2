@@ -86,8 +86,11 @@ export default function ProfilePage() {
     });
   };
 
-  const handleUnfollow = (id) => {
-    Axios.delete(`${process.env.REACT_APP_API_URL}/relationships/${id}`).then((response) => {
+  const handleUnfollow = (playerid, username) => {
+    Axios.put(`${process.env.REACT_APP_API_URL}/relationships`, {
+      playerid,
+      username,
+    }).then((response) => {
       getFollowedPlayers()
     });
   }
@@ -99,9 +102,6 @@ export default function ProfilePage() {
   const [newSurname, setNewSurname] = useState(user?.surname ?? "");
   const [newAge, setNewAge] = useState(user?.surname ?? 1);
 
-  
-
-  window.scrollTo(0, 0);
 
 
   return (
@@ -113,7 +113,7 @@ export default function ProfilePage() {
           return (
             <div className="player">
               <div>
-                <h3>playerid: {val.playerid}</h3>
+                {/*<h3>playerid: {val._id.playerid}</h3>*/}
                 <h3>playername: {val.playername}</h3>
                 <h3>playerposition: {val.playerposition}</h3>
                 <h3>playerrating: {val.playerrating}</h3>
@@ -122,10 +122,10 @@ export default function ProfilePage() {
               <div>
                 {" "}
                 <button onClick={() =>
-                  followedPlayers.some(player => player.followedPlayerId == val.playerid)
-                    ? handleUnfollow(followedPlayers.find(player => player.followedPlayerId == val.playerid).id)
-                    : handleFollow(val.playerid)}>
-                  {followedPlayers.some(player => player.followedPlayerId == val.playerid)
+                  followedPlayers.some(player => player._id.playerid == val._id.playerid)
+                    ? handleUnfollow(followedPlayers.find(player => player._id.playerid == val._id.playerid)._id.playerid, username)
+                    : handleFollow(val._id.playerid)}>
+                  {followedPlayers.some(player => player._id.playerid == val._id.playerid)
                     ? "Following"
                     : "Follow"}
                 </button>
@@ -262,6 +262,13 @@ export default function ProfilePage() {
             window.location = `/profilepage/${username}/players`
           }}>
             Players
+          </button>
+        </div>
+        <div>
+          <button onClick={()=>{
+            window.location = `/profilepage/${username}/followedplayers`
+          }}>
+            Followed Players
           </button>
         </div>
     </div>
