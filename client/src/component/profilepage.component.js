@@ -118,6 +118,7 @@ export default function ProfilePage() {
                 <h3>playerposition: {val.playerposition}</h3>
                 <h3>playerrating: {val.playerrating}</h3>
                 <h3>playerteam: {val.playerteam}</h3>
+                <h3>suspended: {val.redCard ? "Yes" : "No"}</h3>
               </div>
               <div>
                 {" "}
@@ -262,6 +263,13 @@ export default function ProfilePage() {
             window.location = `/profilepage/${username}/players`
           }}>
             Players
+          </button>
+        </div>
+        <div>
+          <button onClick={()=>{
+            window.location = `/profilepage/${username}/suspendedplayers`
+          }}>
+            Suspended Players
           </button>
         </div>
     </div>
