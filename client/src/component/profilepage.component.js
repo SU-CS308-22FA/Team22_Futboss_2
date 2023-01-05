@@ -253,8 +253,8 @@ export default function ProfilePage() {
                 <h3>playername: {val.playername}</h3>
                 <h3>playerposition: {val.playerposition}</h3>
                 <h3>playerteam: {val.playerteam}</h3>
-                <h3>playerteam: {val.playerrating}</h3>
-                <h3>playerteam: {val.redCard ? "yes" : "no"}</h3>
+                <h3>playerrating: {val.playerrating}</h3>
+                <h3>suspended: {val.redCard ? "yes" : "no"}</h3>
               </div>
               <div>
                 {" "}
