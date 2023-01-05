@@ -17,7 +17,6 @@ export default function AdminProfilePage() {
   const [playerrating, setPlayerRating] = useState(1)
   const [playernationality, setPlayerNationality] = useState("")
   const [playerList, setPlayerList] = useState([]);
- 
 
   const addPlayer = () => {
     Axios.post(`${process.env.REACT_APP_API_URL}/createplayer`, {
@@ -55,8 +54,6 @@ export default function AdminProfilePage() {
       );
     });
   };
-
-  
   
   
   return (
@@ -102,22 +99,16 @@ export default function AdminProfilePage() {
         </div>
         <div className="players">
         <button onClick={getPlayer}>Show Players</button>
-        <Link to="adminplayerrating">
-        <button>
-          Adjust Player Ratings
-        </button>
-      </Link>
         {playerList.map((val, key) => {
           return (
             <div className="player">
-              <div key={val.playerrating}>
+              <div>
                 <h3>playername: {val.playername}</h3>
                 <h3>playerposition: {val.playerposition}</h3>
                 <h3>playerteam: {val.playerteam}</h3>
                 <h3>playerrating: {val.playerrating}</h3>
                 <h3>playernationality: {val.playernationality}</h3>
-                
-              </div> 
+              </div>
               <div>
                 {" "}
                 <button
