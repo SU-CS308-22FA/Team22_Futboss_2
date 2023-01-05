@@ -3,64 +3,96 @@ import { Link, useParams } from "react-router-dom";
 import { adminContext } from "../store/context";
 import Axios from "axios";
 
-export default function AdminProfilePage() {
+export default function manageusers() {
 
-  window.scrollTo(0, 0);
-  const { admin } = useContext(adminContext);
-  const { adminusername } = useParams();
-
-  const [username, setUserName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [userList, setUserList] = useState([]);
 
-   const getUser = () => {
-    Axios.get(`${process.env.REACT_APP_API_URL}/user`).then((response) => {
-      setUserList(response.data);
-    });
-  };
+  const [newEmail, setNewEmail] = useState("");
 
-   const deleteUser = (username, setUserList, userList) => {
-    Axios.delete(`${process.env.REACT_APP_API_URL}/delete/${username}`).then((response) => {
-      setUserList(
-        userList.filter((val) => {
-          return val.username != username;
-        })
-      );
-    });
-  };
-  
-  
-  return (
-    <div>
-        <div className="users">
-        <button onClick={getUser}>Show Users</button>
-        {userList.map((val, key) => {
-          return (
-            <div className="user">
-              <div>
-                <h3>username: {val.username}</h3>
-              </div>
-              <div>
-                {" "}
-                <button
-                  onClick={() => {
-                    deleteUser(val.username, setUserList, userList);
-                  }}
-                >
-                  Delete
-                </button>
+ const signUp = () => {
+  Axios.post(`${process.env.REACT_APP_API_URL}/player`, {
+  username: username, 
+  email: email, 
+  password: password
+  }).then(()=> {
+    setUserList([...userList,{
+    username: username, 
+    email: email, 
+    password: password
+    },
+  ])
+  });
+ };
 
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <Link to="/">
-        <button>
-          Logout
-        </button>
-      </Link>
-      <Link to="adminbugreports">
-      </Link>
-    </div>
-  );
+ const getUser = () => {
+  Axios.get(`${process.env.REACT_APP_API_URL}/user`).then((response) => {
+    setUserList(response.data);
+ });
+};
+
+
+const deleteUser = (username) => {
+  Axios.delete('${process.env.REACT_APP_API_URL}/delete/${username}');
 }
+  Axios.delete(`${process.env.REACT_APP_API_URL}/delete/${username}`).then((response) => {
+    setUserList(userList.filter((val => {
+      return val.username != username;
+    })
+    )
+    );
+  });
+};
+
+  return (
+    <div className="App">
+      <div className="reg_information">
+        <label>Username</label>
+        <input type="text" 
+          onChange={(event)=>{
+          setUsername(event.target.value);
+        } }
+        />
+        <label>Email</label>
+        <input type="text" 
+        onChange={(event)=>{
+          setEmail(event.target.value);
+        } }
+        />
+        <label>Password</label>
+        <input type="text" 
+        onChange={(event)=>{
+          setPassword(event.target.value);
+        } } 
+        />
+        <button onClick={signUp}>Sign Up</button>
+      </div>
+      <div className="users">
+        <button onClick={getUser}>Show User</button>
+        {userList.map((val, key) => {
+         return (
+         <div className="user"> 
+          <div>
+            <h3>Username: {val.username}</h3> 
+            <h3>Email: {val.email}</h3> 
+            <h3>Password: {val.password}</h3> 
+          </div>
+          <div>
+            {" "}
+            <input type="text" placeholder="...@gmail.com"
+            onChange={(event)=>{
+              setNewEmail(event.target.value);
+            } }
+            /> 
+            <button onClick={() => {updateUserEmail(val.username)}}>Update</button>
+            <button onClick={() => {deleteUser(val.username)}}>Delete</button>
+          </div>
+         </div>
+         );
+       })}
+      </div>
+    </div>
+    
+  );
