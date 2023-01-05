@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { deleteUser } from "./login.component";
 import { userContext } from "../store/context";
 import Axios from "axios";
+import "../style/profilepage.css";
+
 
 
 const updateEmail = (username, email) => {
@@ -107,58 +109,11 @@ export default function ProfilePage() {
   return (
 
     <div>
-      <div className="players">
-        <button onClick={getPlayer}>Show Players</button>
-        {playerList.map((val, key) => {
-          return (
-            <div className="player">
-              <div>
-                <h3>playerid: {val.playerid}</h3>
-                <h3>playername: {val.playername}</h3>
-                <h3>playerposition: {val.playerposition}</h3>
-                <h3>playerrating: {val.playerrating}</h3>
-                <h3>playerteam: {val.playerteam}</h3>
-              </div>
-              <div>
-                {" "}
-                <button onClick={() =>
-                  followedPlayers.some(player => player.followedPlayerId == val.playerid)
-                    ? handleUnfollow(followedPlayers.find(player => player.followedPlayerId == val.playerid).id)
-                    : handleFollow(val.playerid)}>
-                  {followedPlayers.some(player => player.followedPlayerId == val.playerid)
-                    ? "Following"
-                    : "Follow"}
-                </button>
+      <div class="row">
+      <div class="column">
+      <div>Welcome, {username}</div>
+      
 
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <div>{username}</div>
-      <Link to="/">
-        <button
-          onClick={() => {
-            deleteUser(username);
-          }}
-        >
-          Delete
-        </button>
-      </Link>
-      <Link to="pictureuploader">
-        <button
-          
-        >
-          Picture
-        </button>
-      </Link>
-      <Link to="bugreporter">
-        <button
-          
-        >
-          Report Bug
-        </button>
-      </Link>
       <br />
       <input
         type="text"
@@ -238,7 +193,6 @@ export default function ProfilePage() {
       >
         Update
       </button>
-
       <br/>
       <button
         onClick={()=>{
@@ -247,22 +201,75 @@ export default function ProfilePage() {
         >
           Teams
         </button>
+        <button onClick={()=>{
 
-
-        <br/>
-      <button
-        onClick={()=>{
-          window.location = `/profilepage/${username}/teamoftheweek`
-        }}
-        >
-          Team of The Week
-        </button>
-        <div>
-          <button onClick={()=>{
             window.location = `/profilepage/${username}/players`
           }}>
             Players
           </button>
+          <button
+        onClick={()=>{
+          window.location = `/profilepage/${username}/teamoftheweek`
+        }}
+        >
+          TOTW
+        </button>
+        <div>
+          <Link to="/">
+          <br/>
+        <button
+          onClick={() => {
+            deleteUser(username);
+          }}
+        >
+          Delete My Profile
+        </button>
+      </Link>
+      <Link to="pictureuploader">
+        <button
+          
+        >
+          Upload Picture
+        </button>
+      </Link>
+      <Link to="bugreporter">
+        <button
+          
+        >
+          Report a Bug
+        </button>
+      </Link>
+          </div>
+          <div class="column">
+      <div className="showplayers">
+        <button onClick={getPlayer}>Show Players</button>
+        {playerList.map((val, key) => {
+          return (
+            <div className="playersprofile">
+              <div>
+                <h3>playerid: {val.playerid}</h3>
+                <h3>playername: {val.playername}</h3>
+                <h3>playerposition: {val.playerposition}</h3>
+                <h3>playerteam: {val.playerteam}</h3>
+              </div>
+              <div>
+                {" "}
+                <button onClick={() =>
+                  followedPlayers.some(player => player.followedPlayerId == val.playerid)
+                    ? handleUnfollow(followedPlayers.find(player => player.followedPlayerId == val.playerid).id)
+                    : handleFollow(val.playerid)}>
+                  {followedPlayers.some(player => player.followedPlayerId == val.playerid)
+                    ? "Following"
+                    : "Follow"}
+                </button>
+
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      </div>
+        </div>
         </div>
     </div>
     
