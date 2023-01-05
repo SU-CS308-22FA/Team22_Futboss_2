@@ -846,6 +846,18 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
   });*/
   });
 
+  app.get("/suspended-players", async (req, res) => {
+    const query = { redCard: true };
+  
+    try {
+      const result = await futdb.collection("player").find(query).toArray();
+      console.log(result);
+      res.send(result);
+    } catch (e) {
+      res.send(e);
+    }
+  });
+
 app.get("/relationships/:username", getRelationships)
 app.post("/relationships", addRelationship)
 app.put("/relationships", deleteRelationship)

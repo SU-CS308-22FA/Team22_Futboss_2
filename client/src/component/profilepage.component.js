@@ -110,6 +110,7 @@ export default function ProfilePage() {
 
     <div>
 
+
       <div class="row">
       <div class="column">
       <div>Welcome, {username}</div>
@@ -277,6 +278,13 @@ export default function ProfilePage() {
             window.location = `/profilepage/${username}/followedplayers`
           }}>
             Followed Players
+          </button>
+        </div>
+        <div>
+          <button onClick={()=>{
+            window.location = `/profilepage/${username}/suspendedplayers`
+          }}>
+            Suspended Players
           </button>
         </div>
     </div>
