@@ -99,6 +99,11 @@ export default function AdminProfilePage() {
         </div>
         <div className="players">
         <button onClick={getPlayer}>Show Players</button>
+        <Link to="adminplayerrating">
+        <button>
+          Adjust Player Ratings
+        </button>
+        </Link>
         {playerList.map((val, key) => {
           return (
             <div className="player">
@@ -109,7 +114,7 @@ export default function AdminProfilePage() {
                 <h3>playerrating: {val.playerrating}</h3>
                 <h3>playernationality: {val.playernationality}</h3>
               </div>
-              <div>
+              <div key={val.playerrating}>
                 {" "}
                 <button
                   onClick={() => {

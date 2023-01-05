@@ -12,7 +12,7 @@ const app = express()
 const __dirname = path.resolve();
 const uri = "mongodb+srv://futboss2:futboss2022@cluster0.48gglji.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(uri);
-var futdb = client.db("futboss2");
+export var futdb = client.db("futboss2");
 app.use(cors());
 app.use(express.static(path.join(__dirname + "/public")));
 //app.use(express.json);
@@ -271,6 +271,19 @@ app.put('/updateage', (req,res) => {
     }
   });*/
 })
+
+app.put('/updateplayerrating', (req, res) => {
+  const playerid = req.body.playerid;
+  const playerrating = req.body.playerrating;
+
+  var myquery = {"_id":{"playerid":playerid}};
+  var newvalues = {$set: {"playerrating":playerrating}};
+
+  futdb.collection("player").updateOne(myquery,newvalues, function(err,result){
+    if (err) throw err;
+    res.send()
+  });
+}); 
 
 app.delete('/delete/:username', (req,res) => {
   const username = req.params.username;
@@ -795,6 +808,35 @@ app.get("/team", (req, res) => {
   });*/
 });
 
+app.get("/champteam", (req, res) => {
+  
+  console.log("in champteam");
+  futdb.collection("championteams").find().toArray(function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
+  })
+});
+
+app.get('/followedplayers/:username', async (req, res) => {
+  try {
+    const result = await futdb.collection('user').findOne({ _id: { username: req.params.username } });
+
+    if (result?.following) {
+      const playerids = result.following.map((item) => item.playerid)
+      const players = await futdb.collection('player').find({ "_id.playerid": { $in: playerids }  }).toArray();
+      
+      console.log(players)
+      res.send(players)
+      return
+    }
+    res.send([])
+  } catch (e) {
+    res.send(e);
+  }
+})
+
 
 
 app.delete('/deleteplayer/:playerid', (req,res) => {
@@ -815,9 +857,21 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
   });*/
   });
 
+  app.get("/suspended-players", async (req, res) => {
+    const query = { redCard: true };
+  
+    try {
+      const result = await futdb.collection("player").find(query).toArray();
+      console.log(result);
+      res.send(result);
+    } catch (e) {
+      res.send(e);
+    }
+  });
+
 app.get("/relationships/:username", getRelationships)
 app.post("/relationships", addRelationship)
-app.delete("/relationships/:id", deleteRelationship)
+app.put("/relationships", deleteRelationship)
 
 
   app.use((req, res, next) => {
