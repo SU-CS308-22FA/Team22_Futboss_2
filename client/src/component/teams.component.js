@@ -29,8 +29,14 @@ export default function Teams(){
               </div>
              
             </div>
+            
           );
         })}
+        <Link to="championteams">
+        <button>
+          Champion Teams
+        </button>
+        </Link>
       </div>
 
 

@@ -795,7 +795,16 @@ app.get("/team", (req, res) => {
   });*/
 });
 
-
+app.get("/champteam", (req, res) => {
+  
+  console.log("in champteam");
+  futdb.collection("championteams").find().toArray(function(err,results) {
+    if(err) throw err;
+    res.send(results);
+    console.log(results);
+    console.log("1 document found");
+  })
+});
 
 app.delete('/deleteplayer/:playerid', (req,res) => {
   const playerid = req.params.playerid;
