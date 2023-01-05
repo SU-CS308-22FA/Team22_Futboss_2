@@ -16,6 +16,13 @@ export function Contactus() {
                 futboss@gmail.com</h1>
                 <h1> Headquartes: Orta Mahalle, Üniversite Caddesi</h1>
                 <h1> No:27 Tuzla, 34956 İstanbul</h1>
+                <h1>
+                Social Media</h1>
+                <h1>
+                <span>
+                Follow us on Instagram! <a href="https://www.instagram.com/futboss2023/?next=%2F">Futboss2023</a>
+        </span>   
+        </h1>
         </div>
         </div>)
 }

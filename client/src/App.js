@@ -15,6 +15,7 @@ import Bugs from "./component/adminbugreports.component";
 import Teams from "./component/teams.component";
 import TeamPage from "./component/teampage.component";
 import { PlayerPage } from "./component/playerpage.component";
+import { Contactus } from "./component/contactus.component";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="profilepage/:username/players/:playerid/:playername" element={<PlayerPage/>}/>
             <Route path="profilepage/:username/players" element={<Players/>}/>
             <Route path="mainpage" element={<MainPage/>}/>
+            <Route path="contactus" element={<Contactus/>}/>
           </Routes>
         </div>
       </BrowserRouter>
