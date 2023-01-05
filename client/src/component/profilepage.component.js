@@ -207,6 +207,13 @@ export default function ProfilePage() {
           }}>
             Players
           </button>
+          <button
+        onClick={()=>{
+          window.location = `/profilepage/${username}/teamoftheweek`
+        }}
+        >
+          TOTW
+        </button>
         <div>
           <Link to="/">
           <br/>
