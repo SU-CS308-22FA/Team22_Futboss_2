@@ -92,6 +92,9 @@ export function Login() {
         <span>
           Login as<Link to="/loginadmin">Admin</Link>
         </span>
+        <span>
+          CONTACT US<Link to="/contactus">CLICK HERE</Link>
+        </span>
       </div>
     </div>
   );
