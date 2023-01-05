@@ -16,6 +16,7 @@ import Bugs from "./component/adminbugreports.component";
 import Teams from "./component/teams.component";
 import TeamPage from "./component/teampage.component";
 import { PlayerPage } from "./component/playerpage.component";
+import { Contactus } from "./component/contactus.component";
 import ChampionTeams from "./component/championteams.component";
 import SuspendedPlayersPage from "./component/suspendedplayers.component";
 import FollowedPlayers from "./component/followedplayers.component";
@@ -45,6 +46,7 @@ function App() {
             <Route path="profilepage/:username/suspendedplayers" element={<SuspendedPlayersPage/>}/>
             <Route path="profilepage/:username/followedplayers" element={<FollowedPlayers/>}/>
             <Route path="mainpage" element={<MainPage/>}/>
+            <Route path="contactus" element={<Contactus/>}/>
           </Routes>
         </div>
       </BrowserRouter>
