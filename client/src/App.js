@@ -16,6 +16,7 @@ import Bugs from "./component/adminbugreports.component";
 import Teams from "./component/teams.component";
 import TeamPage from "./component/teampage.component";
 import { PlayerPage } from "./component/playerpage.component";
+import ChampionTeams from "./component/championteams.component";
 import SuspendedPlayersPage from "./component/suspendedplayers.component";
 import FollowedPlayers from "./component/followedplayers.component";
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="adminprofilepage/:adminusername/adminplayerrating" element={<AdjustPlayerRating />} />
             <Route path="profilepage/:username/teams" element={<Teams/>}/>
             <Route path="profilepage/:username/teams/:teamname" element={<TeamPage/>}/>
+            <Route path="profilepage/:username/teams/championteams" element={<ChampionTeams/>}/>
             <Route path="profilepage/:username/players/:playerid/:playername" element={<PlayerPage/>}/>
             <Route path="profilepage/:username/players" element={<Players/>}/>
             <Route path="profilepage/:username/suspendedplayers" element={<SuspendedPlayersPage/>}/>
