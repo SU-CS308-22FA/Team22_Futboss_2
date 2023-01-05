@@ -271,6 +271,44 @@ app.put('/updateage', (req,res) => {
   });*/
 })
 
+
+app.put('/updateplayerrating', (req, res) => {
+  const playerid = req.body.playerid;
+  const playerrating = req.body.playerrating;
+
+  var myquery = {"_id":{"playerid":playerid}};
+  var newvalues = {$set: {"playerrating":playerrating}};
+
+  futdb.collection("player").updateOne(myquery,newvalues, function(err,result){
+    if (err) throw err;
+    res.send()
+  });
+}); 
+
+/*
+app.post('/updateplayerrating', (req,res)=> {
+  const adminusername= req.body.adminusername;
+  const playerid= req.body.playerid;
+  const playerrating = req.body.playerrating;
+  console.log(playerid);
+  console.log(playerrating);
+
+  console.log(req.body)
+  var myobj = {
+    "playerrating":  playerrating
+
+    
+  };
+  var newvalues = {$set: {"playerrating":playerrating}};
+
+  futdb.collection("player").updateOne(myobj,newvalues, function(err,results){
+    if (err) throw err;
+    console.log("1 document updated");
+    res.send(results);
+  });
+    
+  });
+*/
 app.delete('/delete/:username', (req,res) => {
   const username = req.params.username;
   var myquery = {"_id":{"username":username}};
@@ -344,6 +382,7 @@ app.post('/bugcomment', (req,res)=> {
   });
 
 
+  
 
 app.get('/bugs', (req, res) => {
   
@@ -688,6 +727,9 @@ app.delete('/deleteplayer/:playerid', (req,res) => {
     }
   });*/
   });
+
+
+ 
 
 app.get("/relationships/:username", getRelationships)
 app.post("/relationships", addRelationship)
