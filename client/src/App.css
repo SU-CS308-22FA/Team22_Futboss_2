@@ -1,11 +1,11 @@
 
 .App {
-  display: flex;
+  display:flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items:stretch;
   background-image: url("https://wallpaperset.com/w/full/9/4/3/185419.jpg");
-  height: 100%;
+  height: 200%;
   background-position: center;
   background-repeat: repeat;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

@@ -184,6 +184,7 @@ export default function ProfilePage() {
 <div class="demo" id="demo">
  <h3>Player Name: {playername}</h3>
  <h3>Player Team: {playerteam} </h3>
+ <h3>User Average Rating: {playerGk[0]?.avg}</h3>
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -202,6 +203,8 @@ export default function ProfilePage() {
 <div class="demolb" id="demolb">
  <h3>Player Name: {playerDefense[0]?.playername}</h3>
  <h3>Player Team: {playerDefense[0]?.playerteam} </h3>
+ <h3>User Average Rating: {playerDefense[0]?.avg}</h3>
+
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -220,6 +223,7 @@ export default function ProfilePage() {
 <div class="demolcb" id="demolcb">
  <h3>Player Name: {playerDefense[1]?.playername}</h3>
  <h3>Player Team: {playerDefense[1]?.playerteam} </h3>
+ <h3>User Average Rating: {playerDefense[1]?.avg}</h3>
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -238,6 +242,8 @@ export default function ProfilePage() {
 <div class="demorcb" id="demorcb">
  <h3>Player Name: {playerDefense[2]?.playername}</h3>
  <h3>Player Team: {playerDefense[2]?.playerteam} </h3>
+ <h3>User Average Rating: {playerDefense[2]?.avg}</h3>
+
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -256,6 +262,7 @@ export default function ProfilePage() {
 <div class="demorb" id="demorb">
  <h3>Player Name: {playerDefense[3]?.playername}</h3>
  <h3>Player Team: {playerDefense[3]?.playerteam} </h3>
+ <h3>User Average Rating: {playerDefense[3]?.avg}</h3>
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -274,6 +281,7 @@ export default function ProfilePage() {
 <div class="demolm" id="demolm">
  <h3>Player Name: {playerMidfield[0]?.playername}</h3>
  <h3>Player Team: {playerMidfield[0]?.playerteam} </h3>
+ <h3>User Average Rating: {playerMidfield[0]?.avg}</h3>
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -292,6 +300,8 @@ export default function ProfilePage() {
 <div class="demolcm" id="demolcm">
  <h3>Player Name: {playerMidfield[1]?.playername}</h3>
  <h3>Player Team: {playerMidfield[1]?.playerteam} </h3>
+ <h3>User Average Rating: {playerMidfield[1]?.avg}</h3>
+
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -310,6 +320,8 @@ export default function ProfilePage() {
 <div class="demorcm" id="demorcm">
  <h3>Player Name: {playerMidfield[2]?.playername}</h3>
  <h3>Player Team: {playerMidfield[2]?.playerteam} </h3>
+ <h3>User Average Rating: {playerMidfield[2]?.avg}</h3>
+
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -328,6 +340,8 @@ export default function ProfilePage() {
 <div class="demorm" id="demorm">
  <h3>Player Name: {playerMidfield[3]?.playername}</h3>
  <h3>Player Team: {playerMidfield[3]?.playerteam} </h3>
+ <h3>User Average Rating: {playerMidfield[3]?.avg}</h3>
+
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -346,6 +360,8 @@ export default function ProfilePage() {
 <div class="demolst" id="demolst">
  <h3>Player Name: {playerForward[0]?.playername}</h3>
  <h3>Player Team: {playerForward[0]?.playerteam} </h3>
+ <h3>User Average Rating: {playerForward[0]?.avg}</h3>
+
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
@@ -364,6 +380,7 @@ export default function ProfilePage() {
 <div class="demorst" id="demorst">
  <h3>Player Name: {playerForward[1]?.playername}</h3>
  <h3>Player Team: {playerForward[1]?.playerteam} </h3>
+ <h3>User Average Rating: {playerForward[1]?.avg}</h3>
  <div>
         <input type="number" placeholder="Your rating" onChange={(event) => {
             setUserRating(event.target.value);
