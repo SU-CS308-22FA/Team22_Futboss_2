@@ -88,8 +88,11 @@ export default function ProfilePage() {
     });
   };
 
-  const handleUnfollow = (id) => {
-    Axios.delete(`${process.env.REACT_APP_API_URL}/relationships/${id}`).then((response) => {
+  const handleUnfollow = (playerid, username) => {
+    Axios.put(`${process.env.REACT_APP_API_URL}/relationships`, {
+      playerid,
+      username,
+    }).then((response) => {
       getFollowedPlayers()
     });
   }
@@ -101,14 +104,12 @@ export default function ProfilePage() {
   const [newSurname, setNewSurname] = useState(user?.surname ?? "");
   const [newAge, setNewAge] = useState(user?.surname ?? 1);
 
-  
-
-  window.scrollTo(0, 0);
 
 
   return (
 
     <div>
+
       <div class="row">
       <div class="column">
       <div>Welcome, {username}</div>
@@ -270,6 +271,13 @@ export default function ProfilePage() {
       </div>
       </div>
         </div>
+        </div>
+        <div>
+          <button onClick={()=>{
+            window.location = `/profilepage/${username}/followedplayers`
+          }}>
+            Followed Players
+          </button>
         </div>
     </div>
     
