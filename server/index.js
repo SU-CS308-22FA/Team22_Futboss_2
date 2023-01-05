@@ -272,6 +272,19 @@ app.put('/updateage', (req,res) => {
   });*/
 })
 
+app.put('/updateplayerrating', (req, res) => {
+  const playerid = req.body.playerid;
+  const playerrating = req.body.playerrating;
+
+  var myquery = {"_id":{"playerid":playerid}};
+  var newvalues = {$set: {"playerrating":playerrating}};
+
+  futdb.collection("player").updateOne(myquery,newvalues, function(err,result){
+    if (err) throw err;
+    res.send()
+  });
+}); 
+
 app.delete('/delete/:username', (req,res) => {
   const username = req.params.username;
   var myquery = {"_id":{"username":username}};
