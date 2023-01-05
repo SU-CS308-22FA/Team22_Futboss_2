@@ -30,7 +30,7 @@ export default function SuspendedPlayersPage() {
                 <h1>Suspended Players List</h1>
                 {players.map((val, key) => {
                     return (
-                        <div style={{ borderStyle: 'solid', borderWidth: 5, margin: 5, backgroundColor: 'white', padding: 10 }}>
+                        <div style={{ borderStyle: 'solid', borderWidth: 5, margin: 5, backgroundColor: 'blue', padding: 10 }}>
                             <h3>playername: {val.playername}</h3>
                             <h3>playerposition: {val.playerposition}</h3>
                             <h3>playerteam: {val.playerteam}</h3>
