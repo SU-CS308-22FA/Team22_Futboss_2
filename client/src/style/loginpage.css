@@ -1,0 +1,12 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://wallpaperset.com/w/full/9/4/3/185419.jpg");
+    height: 800px;
+    background-position: center;
+    background-repeat: repeat;
+    color: rgb(255, 255, 255);
+    font-size: large;
+  }

@@ -9,7 +9,8 @@ import { LoginAdmin } from "./component/loginadmin.component";
 import PictureUploader from "./component/pictureuploader.component";
 import TeamOfTheWeek from "./component/teamoftheweek.component";
 import Players from "./component/players.component";
-
+import AdjustPlayerRating from "./component/setplayerrating.component";
+import MainPage from "./component/mainpage.component";
 import BugReporter from "./component/bugreporter.component";
 import Bugs from "./component/adminbugreports.component";
 import Teams from "./component/teams.component";
@@ -33,11 +34,13 @@ function App() {
             <Route path="profilepage/:username/teamoftheweek" element={<TeamOfTheWeek />} />
             <Route path="profilepage/:username/bugreporter" element={<BugReporter/>} />
             <Route path="adminprofilepage/:adminusername/adminbugreports" element={<Bugs />} />
+            <Route path="adminprofilepage/:adminusername/adminplayerrating" element={<AdjustPlayerRating />} />
             <Route path="profilepage/:username/teams" element={<Teams/>}/>
             <Route path="profilepage/:username/teams/:teamname" element={<TeamPage/>}/>
             <Route path="profilepage/:username/players/:playerid/:playername" element={<PlayerPage/>}/>
             <Route path="profilepage/:username/players" element={<Players/>}/>
             <Route path="profilepage/:username/followedplayers" element={<FollowedPlayers/>}/>
+            <Route path="mainpage" element={<MainPage/>}/>
           </Routes>
         </div>
       </BrowserRouter>
