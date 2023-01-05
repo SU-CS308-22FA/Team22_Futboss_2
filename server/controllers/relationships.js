@@ -1,35 +1,55 @@
-import { db } from "../index.js";
+import { futdb } from "../index.js";
 
 
-export const getRelationships = (req,res)=>{
-    const q = "SELECT * FROM relationships WHERE followerUsername = ?";
+export const getRelationships = async (req, res) => {
 
-    db.query(q, [req.params.username], (err, data) => {
-      if (err) return res.status(500).json(err);
-      return res.send(data);//data.map(relationship=>({followerUsername: relationship.followerUsername, playerId: relationship.followedPlayerID})));
-    });
+  try {
+    const result = await futdb.collection('user').findOne({ _id: { username: req.params.username } });
+
+    if (result?.following) {
+      const playerids = result.following.map((item) => item.playerid)
+      const players = await futdb.collection('player').find({ "_id.playerid": { $in: playerids }  }).toArray();
+      
+      console.log(players)
+      res.send(players)
+      return
+    }
+    res.send([])
+  } catch (e) {
+    res.send(e);
+  }
 }
 
-export const addRelationship = (req, res) => {
+export const addRelationship = async (req, res) => {
+  const { username, playerId } = req.body
+  var myquery = { "_id": { "username": username } };
+  var newvalues = {
+    $push: {
+      following: { playerid: playerId }
+    }
+  };
 
-    const q = "INSERT INTO relationships (`followerUsername`,`followedPlayerId`) VALUES (?)";
-    const values = [
-      req.body.username,
-      req.body.playerId
-    ];
+  try {
+    await futdb.collection('user').updateOne(myquery, newvalues)
+    res.send();
+  } catch (e) {
+    res.send(e);
+  }
 
-    db.query(q, [values], (err, data) => {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json("Following");
-    });
 };
 
-export const deleteRelationship = (req, res) => {
-
-    const q = "DELETE FROM relationships WHERE `id` = ?";
-
-    db.query(q, [req.params.id], (err, data) => {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json("Unfollow");
-    });
+export const deleteRelationship = async (req, res) => {
+  const { username, playerid } = req.body;
+  var myquery = { "_id": { "username": username } };
+  var newvalues = {
+    $pull: {
+      following: { playerid }
+    }
+  };
+  try {
+    await futdb.collection('user').updateOne(myquery, newvalues);
+    res.send()
+  } catch (e) {
+    res.send(e);
+  }
 };

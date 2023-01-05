@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Axios from "axios";
 import { userContext } from "../store/context";
-
+import "../style/loginpage.css";
 
 export const deleteUser = (username, setUserList, userList) => {
   Axios.delete(`${process.env.REACT_APP_API_URL}/delete/${username}`).then((response) => {
@@ -69,7 +69,7 @@ export function Login() {
   return (
     <div>
       <div className="login">
-        <h1>Login</h1>
+        <h1>LOGIN</h1>
         <input
           type="text"
           placeholder="Username..."
