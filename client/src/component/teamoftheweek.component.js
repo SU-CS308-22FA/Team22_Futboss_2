@@ -25,10 +25,12 @@ export default function ProfilePage() {
   const [playerposition, setPlayerPosition] = useState("");
   const [playerteam, setPlayerTeam] = useState("");
   const [playerList, setPlayerList] = useState([]);
-  const [playerGk, setPlayerGk] = useState({})
+  const [playerGk, setPlayerGk] = useState([])
   const [playerDefense, setPlayerDefense] = useState([]);
   const [playerMidfield, setPlayerMidfield] = useState([]);
   const [playerForward, setPlayerForward] = useState([]);
+  const [userRating, setUserRating] = useState(0);
+  const [avgRating, setAvgRating] = useState(0);
 
 
   const [followedPlayers, setFollowedPlayers] = useState([])
@@ -45,6 +47,8 @@ export default function ProfilePage() {
       setPlayerName(response.data[0].playername);
       setPlayerPosition(response.data[0].playerposition);
       setPlayerTeam(response.data[0].playerteam);
+      setPlayerGk(response.data);
+
     });
     //getFollowedPlayers()
   };
@@ -78,7 +82,10 @@ export default function ProfilePage() {
   //const [newSurname, setNewSurname] = useState(user?.surname ?? "");
   //const [newAge, setNewAge] = useState(user?.surname ?? 1);
 
-  
+  const buttonevent = () => {
+    console.log("hereeee");
+    
+  };
 
   window.scrollTo(0, 0);
   
@@ -99,6 +106,33 @@ export default function ProfilePage() {
     getForward();
   },[]);
 
+  function toggleText(position) {
+    var text = document.getElementById(position);
+    console.log(position);
+  
+    if (text.style.display === "none") {
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
+
+  const postRating = (rating, inputplayerid) => {
+    console.log(rating);
+    console.log(inputplayerid);
+    Axios.post(`${process.env.REACT_APP_API_URL}/totw/${inputplayerid}/rating`, {
+        rating: rating,
+        username:username
+    }).then((response) => {
+        console.log(response);
+        setAvgRating(response.data);
+        console.log("selam");
+        getGk();
+        getDefense();
+        getForward();
+        getMidfield();
+    });
+    };
 
   return (
     <center>
@@ -110,44 +144,249 @@ export default function ProfilePage() {
      <div class="interior"></div>
      <div class="penalty"></div>           
      <div class="gk">
-      <text>{playername} evet</text>
+     <button class="btninfo" onClick={() => {toggleText("demo")}}>{playername}</button>
      </div>
      <div class="lb">
-      <text>{playerDefense[0]?.playername}</text>
+      <button class="btnlb" onClick={() => {toggleText("demolb")}}>{playerDefense[0]?.playername}</button>
      </div>
      <div class="leftcb">
-      <text>{playerDefense[1]?.playername}</text>
+      <button class="btnlcb" onClick={() => {toggleText("demolcb")}}>{playerDefense[1]?.playername}</button>
      </div>
      <div class="rightcb">
-      <text>{playerDefense[2]?.playername}</text>
+      <button class="btnrcb" onClick={() => {toggleText("demorcb")}}>{playerDefense[2]?.playername}</button>
      </div>
      <div class="rb">
-      <text>{playerDefense[3]?.playername}</text>
+     <button class="btnrb" onClick={() => {toggleText("demorb")}}>{playerDefense[3]?.playername}</button>
      </div>
      <div class="lm">
-      <text>{playerMidfield[0]?.playername}</text>
+     <button class="btnrb" onClick={() => {toggleText("demolm")}}>{playerMidfield[0]?.playername}</button>
      </div>
      <div class="lcm">
-      <text>{playerMidfield[1]?.playername}</text>
+     <button class="btnrb" onClick={() => {toggleText("demolcm")}}>{playerMidfield[1]?.playername}</button>
      </div>
      <div class="rcm">
-      <text>{playerMidfield[2]?.playername}</text>
+      <button class="btnrb" onClick={() => {toggleText("demorcm")}}>{playerMidfield[2]?.playername}</button>
+
      </div>
      <div class="rm">
-      <text>{playerMidfield[3]?.playername}</text>
+     <button class="btnrb" onClick={() => {toggleText("demorm")}}>{playerMidfield[3]?.playername}</button>
      </div>
      <div class="lst">
-       <text>{playerForward[0]?.playername}</text>
+     <button class="btnrb" onClick={() => {toggleText("demolst")}}>{playerForward[0]?.playername}</button>
      </div>
      <div class="rst">
-       <text>{playerForward[1]?.playername}</text>
+     <button class="btnrb" onClick={() => {toggleText("demorst")}}>{playerForward[1]?.playername}</button>
      </div>
-  
+
+
   </div>
- </div>
+</div>
+<div class="demo" id="demo">
+ <h3>Player Name: {playername}</h3>
+ <h3>Player Team: {playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerGk[0]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demolb" id="demolb">
+ <h3>Player Name: {playerDefense[0]?.playername}</h3>
+ <h3>Player Team: {playerDefense[0]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerDefense[0]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demolcb" id="demolcb">
+ <h3>Player Name: {playerDefense[1]?.playername}</h3>
+ <h3>Player Team: {playerDefense[1]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerDefense[1]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demorcb" id="demorcb">
+ <h3>Player Name: {playerDefense[2]?.playername}</h3>
+ <h3>Player Team: {playerDefense[2]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerDefense[2]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demorb" id="demorb">
+ <h3>Player Name: {playerDefense[3]?.playername}</h3>
+ <h3>Player Team: {playerDefense[3]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerDefense[3]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demolm" id="demolm">
+ <h3>Player Name: {playerMidfield[0]?.playername}</h3>
+ <h3>Player Team: {playerMidfield[0]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerMidfield[0]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demolcm" id="demolcm">
+ <h3>Player Name: {playerMidfield[1]?.playername}</h3>
+ <h3>Player Team: {playerMidfield[1]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerMidfield[1]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demorcm" id="demorcm">
+ <h3>Player Name: {playerMidfield[2]?.playername}</h3>
+ <h3>Player Team: {playerMidfield[2]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerMidfield[2]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demorm" id="demorm">
+ <h3>Player Name: {playerMidfield[3]?.playername}</h3>
+ <h3>Player Team: {playerMidfield[3]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerMidfield[3]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demolst" id="demolst">
+ <h3>Player Name: {playerForward[0]?.playername}</h3>
+ <h3>Player Team: {playerForward[0]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerForward[0]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+<div class="demorst" id="demorst">
+ <h3>Player Name: {playerForward[1]?.playername}</h3>
+ <h3>Player Team: {playerForward[1]?.playerteam} </h3>
+ <div>
+        <input type="number" placeholder="Your rating" onChange={(event) => {
+            setUserRating(event.target.value);
+          }}
+          />
+         <button onClick={() => { 
+                    console.log(userRating);
+                    setPlayerId(playerForward[1]?._id.playerid);
+                    console.log(playerid);
+                    postRating(userRating, playerid);
+                    
+                  }}>Add My Rating</button> 
+
+        </div>
+</div>
+
 </center>
 
+
+
   );
+
+  
 }
 
 

@@ -6,6 +6,7 @@ import cors from "cors"
 import exp from "constants"
 import { getRelationships, addRelationship, deleteRelationship } from "./controllers/relationships.js";
 import { MongoClient, ObjectId } from "mongodb"
+import { callbackify } from "util"
 
 const app = express()
 const __dirname = path.resolve();
@@ -380,11 +381,103 @@ app.post('/specificplayer/:playerid/:playername/comment', (req,res)=> {
 
 
 
+
+
   futdb.collection("player").update(myquery,newvalues, function(err,results){
     if (err) throw err;
     res.send(results);
     console.log("1 document updated");
   });
+
+ 
+  
+});
+
+app.post('/totw/:playerid/rating', async function (req,res) {
+  const playerid= req.params.playerid;
+  const rating= req.body.rating;
+  const username= req.body.username;
+  console.log(req.body);
+  console.log("in rating");
+  console.log(playerid);
+  console.log(username);
+
+  var myquery = {
+    "_id": {
+      "playerid": playerid,
+    },
+    "userrating.username": username
+    
+  };
+
+  var myquery2 = {
+    "_id": {
+      "playerid": playerid,
+    },
+    
+  };
+
+console.log(await futdb.collection("totw").countDocuments(myquery));
+
+if(await futdb.collection("totw").count(myquery)==0)
+{
+  var newquery = {
+    "_id": {
+      "playerid": playerid,
+    }
+    
+  };
+  var newvaluespush = {$push: {"userrating":{
+    "username": username,
+    "rating":rating
+  }
+  }};
+
+  futdb.collection("totw").updateOne(newquery,newvaluespush, function(err,results){
+    if (err) throw err;
+    res.send(results);
+    console.log("1 document pushed");
+  });
+
+}
+
+else 
+{
+  var newvalues = {$set: {"userrating.$.rating": rating}};
+  let total = 0;
+  var size = 0;
+  
+ 
+  
+  console.log(total);
+    futdb.collection("totw").updateOne(myquery,newvalues, async function(err,results){
+      if (err) throw err;
+      console.log(results);
+      await futdb.collection("totw").find(myquery2).forEach(function(mydoc) {
+        mydoc.userrating.forEach(function (y){
+          let x= parseFloat(y.rating);
+          if(typeof x === 'string' || x instanceof String)
+        {
+        console.log("rating stringmis");
+        }
+          total+=x;
+          size++;
+        })
+      
+      })
+      console.log(size);
+      console.log(total);
+      var avg = total/size;
+      futdb.collection("totw").updateOne(myquery2,{$set:{avg:avg}}, function(err,results){
+        console.log("Avg pushed");
+      })
+      res.send(results);
+      console.log("1 document updated");
+    });
+}
+
+
+
 
  
   
